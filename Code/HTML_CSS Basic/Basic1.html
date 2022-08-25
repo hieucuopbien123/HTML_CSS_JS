@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- # Basic -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document123</title>
+    <link rel="stylesheet" href="css/Basic1.css">
+    
+    <style type="text/css">
+        table,
+        th,
+        td {
+            border: 1px solid red;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- bao cả không gian -->
+    <div style="color:tomato; font-weight: bold;">thẻ div</div>
+
+    <!-- cỡ chữ -->
+    <h1>thẻ h1</h1>
+    <h2>thẻ h2</h2>
+    <h3>thẻ h3</h3>
+    <h4>thẻ h4</h4>
+    <h5>thẻ h5</h5>
+    <h6>thẻ h6</h6>
+
+    <!-- thẻ p block văn bản thay dấu enter như cách -->
+    <p>thẻ pdgaadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagggggggggggggggggggggggggggaaaaaaaaaa
+        aaaaaaaaaaaaaaaaaaagggg
+        ggggggg</p>
+
+    <!-- danh sách -->
+    <ul>
+        <li>menu 1</li>
+        <li>menu 2</li>
+    </ul>
+
+    <table>
+        <!-- có thể ko dùng thead chỉ dùng tbody -->
+        <thead>
+            <tr>
+                <th>th là in đậm và căn chỉnh</th>
+                <td>td là in thường</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>tr là dòng</th>
+                <td>thead là tiêu đề, tbody là nd</td>
+            </tr>
+            <tr>
+                <td>tạo nhiều tr thì nhiều dòng</td>
+                <td>alo 1234</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- lồng inline vào thẻ block -->
+    <span>Xin chào mn</span>
+    <p>Xin chào các <span style="color:Tomato;">bạn</span>, 1234</p>
+
+    <input type="text">
+    <div><input type="checkbox"> </div>
+    <div> <input type="radio" name>
+        <input type="radio">
+    </div>
+    <div><input type="number"></div>
+    <!-- lồng div xuống dòng or dùng thể br -->
+
+    <form>
+        <input type="radio" name="gender" value="male" checked> Male<br>
+        <input type="radio" name="gender" value="female"> Female<br>
+        <input type="radio" name="gender" value="other"> Other
+    </form>
+
+    <!-- có thể chèn đường link trên web (lấy link bằng console) -->
+    <img src="imgs/Sketchpad.png" alt="hello">
+
+    <!-- chọn 1 cái và value là giá trị nó gửi tới server nếu chon -->
+    <select name="">
+        <option value="1">HN</option>
+        <option value="2">HP</option>
+    </select>
+
+    <button class="text-green text-red">hello1</button>
+    <button class="text-green text-violet">hello2</button>
+    <!-- text-violet là class mà ta khai báo css # là id nên coi là k có  -->
+    <button class="text-red text-yellow">hello4</button>
+    <button id="text-violet" class="text-red">hello3</button>
+
+    <div style="margin: 0 auto; width: fit-content;">Hello</div>
+    <div style="text-align:center; width: 50%;">Hello</div>
+    <div style="text-align: justify; text-justify: inter-word; width: 50%;">Lorem ipsum dolor sit amet consectetur 
+        adipisicing elit. Earum laborum dolorum cum placeat non ipsum? Cum vero numquam distinctio consectetur nihil 
+        omnis officiis laborum ipsa. Provident omnis optio pariatur voluptatem. Bo lại thành hình chữ nhật đẹp.</div>
+
+    <figure>
+        <img src="imgs/Sketchpad.png" alt="Trulli" style="width: 80%">
+        <figcaption>Fig.1 - Trulli, Puglia, Italy.</figcaption>
+    </figure>
+    
+
+    <!-- # Flexbox -->
+    <!-- 2 ông align chỉnh ngược chiều và chỉ có hiệu ứng khi chiều còn lại kích thước vượt quá -->
+    <!-- align-items: chỉnh ngược chiều -->
+    <div style="width: 1000px; height: 500px; background-color: gray;
+    display: flex; flex-direction: row; flex-wrap: wrap; align-items: center">
+        <div style="width: 100px; height: 50px; background-color: red;"></div>
+        <div style="width: 500px; height: 50px; background-color: green;"></div>
+        <div style="width: 100px; height: 50px; background-color: yellow;"></div>
+        <div style="width: 500px; height: 50px; background-color: cyan;"></div>
+        <div style="width: 100px; height: 50px; background-color: blue;"></div>
+    </div>
+
+    <!-- align-content: chỉnh ngược chiều -->
+    <div style="width: 1000px; height: 500px; background-color: white;
+    display: flex; flex-direction: row; flex-wrap: wrap; align-content: center">
+        <div style="width: 100px; height: 50px; background-color: red;"></div>
+        <div style="width: 500px; height: 50px; background-color: green;"></div>
+        <div style="width: 100px; height: 50px; background-color: yellow;"></div>
+        <div style="width: 500px; height: 50px; background-color: cyan;"></div>
+        <div style="width: 100px; height: 50px; background-color: blue;"></div>
+    </div>
+
+    <!-- justify-content: đúng chiều flex -->
+    <div style="width: 1000px; height: 500px; background-color: gray;
+    display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center">
+        <div style="width: 100px; height: 50px; background-color: red;"></div>
+        <div style="width: 500px; height: 50px; background-color: green;"></div>
+        <div style="width: 100px; height: 50px; background-color: yellow;"></div>
+        <div style="width: 500px; height: 50px; background-color: cyan;"></div>
+        <div style="width: 100px; height: 50px; background-color: blue;"></div>
+    </div>
+
+    <div style="width: 1000px; height: 500px; background-color: black;
+    display: flex; flex-direction: column; flex-wrap: wrap; justify-content: space-around">
+        <div style="width: 100px; height: 50px; background-color: red;"></div>
+        <div style="width: 500px; height: 50px; background-color: green; align-self: end;"></div>
+        <div style="width: 100px; height: 50px; background-color: yellow;"></div>
+        <div style="width: 500px; height: 50px; background-color: cyan; align-self: end;"></div>
+        <div style="width: 100px; height: 50px; background-color: blue;"></div>
+    </div>
+    
+</body>
+
+</html>

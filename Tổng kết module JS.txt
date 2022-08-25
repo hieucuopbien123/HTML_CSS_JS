@@ -1,0 +1,297 @@
+JS: 
+
+
+
+# Basic
+script tới file js ở cuối page để đảm bảo mọi component đã load xong
+
+Có vài keyword vô dụng như void(<>) và javascript: <>
+Dùng eval tính toán được bằng chuỗi string
+
+Trong JS mặc định có các thứ như 1 ngôn ngữ cơ bản. VD:
+switch(){
+case a:
+case b:
+   <do sth>
+    break;//TH cả case a và b đều làm 1 thứ
+}
+
+-> Các thao tác cơ bản
+Thao tác với chuột có clientX, clientY
+
+-> Thao tác với các biến global
+BOM(Browser Object Model) trong javascript: nó là thứ cho phép ta thao tác với browser như xem lịch sử lướt web. Mấy cái cookies, history, window, screen, navigator,.. là BOM đó.
+Ví dụ: window.document là chuẩn nhưng ta có thể gọi tắt là document cx ok
+
+--> document.lưu các thứ liên quan đến cái tài liệu như các thẻ DOM, lần chỉnh sửa cuối, trạng thái load của tài liệu. 
+--> window quản lý các thứ ảnh hưởng đến cửa số như innerWidth, alert. Có navigator, location,...
+onerror để handle window error
+
+navigator lưu các thứ liên quan đến web và cả cái browser này như tên app, engine, nền tảng, mimetype browser, plugin
+location lưu các thứ về tên vị trí như hostname
+
+--> Các kiểu lấy kích thước
+Muốn lấy chiều dài, rộng của bất cứ thẻ nào thì dùng clientHeight, clientWidth từ DOM thẻ đó. 
+window.innerWidth là width màn hình chuẩn hiện tại -> nên dùng cái này. GT tự đổi khi resize kích thước
+window.screen.width 
+window.screen.availWidth -> width tổng mà có thể dùng, khi resize window kích thước vẫn k đổi
+
+-> Thao tác với string
+--> Search bằng RegExp test, search
+Search bằng string lastIndexOf và indexOf
+
+--> Compare với: localCompare, match, matchAll, ==, 
+--> slice, padEnd, includes
+
+-> Thao tác với thư viện Math
+--> Làm tròn số, lấy random
+
+-> Thao tác với số
+-> Dùng logic
+-> Dialog cơ bản
+-> Bignumber trong JS
+-> with keyword
+
+
+
+# Các kiểu biến khác: 
+-> RegExp
+
+-> Set, Map và Symbol 
+Set và map giống như mảng và có thể được tạo từ mảng
+Symbol thường dùng làm key cho Map vì tính duy nhất. Khai báo symbol k có new
+
+
+---> Cơ chế dọn rác
+Trong browser cũng có GC tự thu gom rác trong bộ nhớ. Cơ chế là tất cả các biến mà k thể truy cập được or k thể sử dụng được sẽ tự động bi loại bỏ. VD:
+let user = { name: "John" }; user = null; thì object {name: "John"} k còn được reference bởi biến nào khác nên k thể truy cập được và tự bị giải phóng khỏi vùng nhớ
+Vc có thể truy cập hay có thể sử dụng hay không bao gồm tất cả các loại reference lồng nhau. Các object hay mảng trong JS đều là tham chiếu
+
+--> WeakMap và WeakSet
+Do cơ chế dọn rác, nếu mảng có 1 phần tử là 1 object chẳng hạn thì dù object mất reference nhưng mảng vẫn còn phần tử đó thì object vẫn k bị giải phóng vì vẫn refer được với array[index]. Điều này là đúng nhưng trong TH dùng map với set, có thể ta muốn nó tự động bị xóa với WeakMap, WeakSet
+---> WeakMap thì key buộc là object và khi reference đến object bởi 1 biến khác k còn thì sẽ tự bị xóa.
+Do GC có thể chạy ngay, có thể chờ 1 vài thao tác nữa mới chạy nên k cố định, do đó người ta cấm k truy cập vào số lượng phần tử hay duyệt các phần tử của WeakMap để tránh sai sót. Chỉ có has delete get set. 
+---> WeakSet giống set nhưng chỉ nhận object, tự bị xóa khi k còn reference từ ngoài, k hỗ trợ size, keys hay các kiểu duyệt
+
+=> Weak rất hay khi dùng làm cache chẳng hạn, dùng làm bất cứ 1 cái gì lưu kiểu tạm thời, khi đối tượng bị xóa thì cx xóa luôn data đi kèm. VD 1 biến weak map lưu thông tin của người dùng, khi người dùng leave thì tự xóa, nếu dùng map bth phải xóa thủ công
+
+
+
+# Closure function
+Là function được return trong 1 function trong 1 class
+Dùng arrow function thì biến this trong function sẽ tự chuẩn bám sát với thứ bao nó
+
+
+
+# Dùng call bind
+bind trả lại 1 function mới với giá trị biến this xác định, tái sử dụng gọi function đó nhiều lần
+call và apply giống nhau chỉ khác cú pháp: o.call(this, args1, args2) và o.apply(this, [args1, args2]); là khi gọi mới gán giá trị this là gì. Cũng chỉ là 1 cách gọi hàm thêm cái là đồng thời gán this mà thôi
+
+
+# Dùng sự kiện JS
+Các sự kiện hay dùng: onmouseover
+
+Có thể dùng: ở tag html; element.onclick = () => {<>}; element.addEventListener("click",() => {})
+
+
+
+# Mảng và object và hàm
+Có thể tạo mảng từ mảng khác, object từ object khác. 
+Bản chất gán = là gán địa chỉ
+
+-> Dùng [] làm key của object => hay
+
+-> Chuyển từ string sang array: [..."Hello"] vì ... dùng với mọi iterator sẽ lấy từng cái
+Cách gán rỗng cho arr chuẩn và cả object
+Xóa trùng lặp phần tử mảng -> chuyển sang Set r chuyển về
+VD ta có thể check tất cả các số trong mảng đều lớn hơn 0 với every or check xem some có số nào âm không cũng được
+cast tất cả phần tử của mảng về 1 kiểu dữ liệu nhanh nhất với .map(Number/String/...);
+Hàm Array.from(mảng, function); giúp tạo array cực mạnh => nên dùng mọi lúc thế hoàn toàn cách ta tạo array bth là k chuẩn
+
+-> Còn có Function() constructor giúp tạo function nhưng cũng gặp các vấn đề về bảo mật và hiệu suất như eval nhưng ít hơn. Điểm khác biệt so với eval là nó chỉ execute trong phạm vi global scope 
+
+-> Dùng set get của object
+-> Destructuring assignment:
+Lấy phần tử của mảng thì theo thứ tự, của object thì trùng tên ms lấy, k thì bỏ qua
+Lấy rest parameter truyền vào function với ... or lấy các thuộc tính của object với {field1, field2}
+
+Cách khác lấy params của function ít dùng là dùng for(var x of arguments) {<>}
+
+-> Các hàm thg dùng:
+flat dùng để xử lý mảng lồng mảng
+includes
+slice
+
+-> Để sort 1 array trong JS:
+- sort 1 mảng string hay mảng số ta dùng TT const arr = [1,5,2,3,1,9,6];
+thì arr.sort(); và arr.reverse(); để sort giảm dần sẽ tự thay đổi trên mảng gốc or dùng arr.sort(function(a, b){return b-a}); để sort giảm dần
+Cách nhớ: tức function(a,b) thì a (return of function) b => nếu return dương tức a > b phải đảo ngược lại vì mặc định nó sort a < b mà 
+- Nhưng thực tế ta thg sort mảng object theo 1 trường cơ nên mở rộng cách 2 là arr.sort(function(a,b){return b.field - a.field});
+
+
+
+# Các kiểu duyệt:
+Các kiểu duyệt được đều có values và entries như array, object, map
+Dùng được object.values() or Object.values(object)
+map có thêm keys()
+
+Các kiểu iterator được ta đều có thể quy về kiểu mảng or object. VD map ta có thể coi như 1 mảng mà mỗi phần tử là 1 mảng 2 phần tử, nên ta dùng map hay fiter cho nó ok hết
+
+-> Vòng for of chỉ dùng với các biến iterable. Vd nó k dùng được TT với biến object vì object không iterable, phải dùng hàm Object.entries, yield function là iterable nên có thể duyệt được
+-> Vòng for in dùng được với biến và mảng bình thường, 1 số kiểu IterableIterator như entries, values lại k dùng được
+Khi nói duyệt object thuần, ta duyệt các key
+-> forEach chỉ dùng cho mảng
+
+-> Các hàm thao tác duyệt mảng có sẵn: some, every, filter, map, sort, reverse, reduce, copyWithin, flat
+
+
+
+# Thao tác thẻ DOM
+DOM sử dụng trong javascript để thay đổi mọi thứ trong trang web. Giống với ta thao tác trong qt. Nó phân cấp trang html theo cây thư mục thẻ html->head/body->... lo 4 thứ element, property, method, event. DOM có nhiều loại trong javascript: DOM HTML, DOM Event, DOM CSS,.. 
+DOM có nhiều phiên bản: Legacy Dom(cũ, hỗ trợ mọi trình duyệt, bị hạn chế), W3C DOM(trình duyệt hiện đại), IE4 DOM.
+
+-> Chỉ có vài hàm cơ bản:
+createElement  querySelector  getElementsByClassName  getElementById  createTextNode
+appendChild
+
+Hàm focus của thẻ thì cả trang chỉ được 1 thẻ focus, có nhiều thì lấy cái được gọi sau
+
+-> Các lệnh khác
+.nodeType trả ra loại node theo số: 1 là element node, 2 là attribute node, 3 là text node, 4 là comment node
+.nodeValue trả ra giá trị text của Node nào đó, nếu đó kp text node thì sẽ ra null
+
+.classList.toggle("classname") => classList có 3 hàm add, remove, toggle. Toggle là dùng class gì khi chưa có và nếu có r thì xóa đi => rất hay dùng trong style DOM
+
+Nếu cần import chỉ 1 node của 1 frame thì dùng importNode. Nhưng nếu import node mà của page này thì phải đặt trong hàm onload của window vì chính page này còn chưa load xong thì lấy thẻ img ra sẽ undefine k import đc
+
+submit form với JS
+
+fragment nhóm nhiều thẻ
+
+
+
+# Dùng promise 
+Cơ chế với then catch: chạy liên tiếp theo thứ tự đến khi hết then catch, lỗi thì chỉ bắt catch tiếp theo, thành công thì chỉ bắt then tiếp theo. 
+Lỗi là khi gọi reject or có error, thành công là khi gọi return or resolve như bth. Message được truyền liên tục
+
+Để gọi tiếp resolve hay reject thì trong then catch lại phải return 1 biến promise mới
+Gọi new Promise(<>) thì bên trong promise sẽ thực hiện ngay trên 1 luồng riêng khi được gọi tới. Chú ý phân biệt điều này với var a = function() và bên trong function mới return new Promise thì promise sẽ k thực hiện ngay vì function k được thực hiện thì làm sao promise thực hiện. Nó chỉ nhanh hơn trong TH khi cái hàm đi liền với nó được gọi thì nó mới được thực hiện như return Promise phải được chạy tới thì Promise mới được thực hiện. 
+Promise khác function vì bth ta gọi return 1 function thì function có thực hiện ngay đâu. 
+
+Có thể tách hàm then lưu sang 1 biến số riêng thay vì .then liên tiếp
+
+Khi dùng then catch thì nên luôn có 1 cái catch ở cuối tránh báo error uncaught
+
+-> Dùng các hàm của promise như promise.all([<>])
+
+-> Dùng async await: có thể kết hợp với promise nhưng k cần .then nữa
+
+
+
+# Các hàm async với thời gian
+setTimeout, setInterval
+
+
+
+# Các tính năng hay:
+--> descriptor của object property: getOwnPropertyDescriptors, defineProperty, getOwnPropertyDescriptor => ít dùng
+Ta chỉ có thể đổi các thứ mà chắc chắn sẽ đổi đc, VD toString là 1 hàm sẽ k đổi đc các thuộc tính 
+
+
+
+# Xử lý errror
+-> Class error
+Khi muốn khai báo 1 object lỗi buộc dùng class vì nó phải kế thừa class Error chứ k đc là 1 function như C++
+Class kế thừa các class lỗi thì k đc khai báo các hàm khác bên trong mà chỉ dùng message trong constructor thôi
+
+
+
+# Dùng class JS
+Khởi tạo biến class mà k có new thì thuộc tính class đó lại được gán cho window
+
+Dùng super gọi hàm class cha, k gọi truy cập được trực tiếp vào thuộc tính mà chỉ vào hàm thôi. Còn truyền gọi super() tức là gọi constructor
+
+Nên mở debug ra xem từng class khi dùng. VD muốn dùng 1 thuộc tính cha ở trong con thì phải mở debug vì nó k là thuộc tính trực tiếp luôn đâu, xong còn prototype nx
+
+-> Phải dùng this với các thuộc tính của class trong class. Trừ khi có with(this){ <> }
+
+-> Tính trừu tượng
+-> Biến lưu class
+-> Biến/hàm static trong class
+-> Tạo singleton class
+
+
+
+# Dùng yield
+Dùng yield chạy 1 hàm * nhiều lần thì chạy liên tiếp, chặt chẽ luôn vì yield k có * thì trả lấy được gì cả.
+Nếu function* có return thì nó sẽ kết thúc luôn nên có thể dùng return để dừng hàm function vĩnh viễn khi thỏa mãn đk gì nhưng giá trị return về sẽ k được lấy ra.
+
+yield* dùng được với mọi type iterative
+
+Ta có thể dùng vòng for để duyệt yield function sẽ chạy liên tiếp mà k cần gọi next. Đây cũng là cơ chế của saga, k cần gọi next mà đưa vào loop duyệt liên tiếp
+
+
+
+# Export import
+Chỉ được export default 1 thứ trong 1 file
+Có thể dynamic import
+
+
+
+# Dùng Rx
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.4.0/Rx.js"></script>
+Rx.Observable hỗ trợ xử lý bất đồng bộ
+=> Thực chất nó vô dụng, chỉ là vc tách ra 1 hàm riêng mà thôi, ta gọi hàm bth cũng được. Hàm trong subscribe xử lý bất đồng bộ thực chất là đáp vào event queue và thực hiện sự kiện lần lượt thôi
+
+
+
+# Tạo extension browser bằng JS
+Có rất nhiều extension có sẵn trên store có thể tải về dùng, VD: Google Translate
+
+-> Để thêm extension vào browser: 
+- Chrome-> More Tools-> Extension-> bật developer mode-> load unpacked-> trỏ đến folder chứa cái extension(chứa file manifest) vừa rồi => Có thể tùy ý tắt or xóa, thêm extension vào chrome trên thanh công cụ
+- Edge-> 3 chấm-> Extension-> bật developer mode-> load unpacked-> trỏ đến folder chứa cái extension.
+
+-> Viết 1 extension cơ bản
+1 extension cho browser chỉ cần tối thiểu 1 file manifest.json cung cấp thông tin mà thôi: tối thiểu name, description, version, manifest_version
+=> Tuy nhiên như v thì extension này chưa làm gì cả, ta cần thêm các script cho nó thực hiện chức năng:
+Content script: là những đoạn mã sẽ chạy trên trang web đang xem -> dùng với "content_scripts"+"js"
+Background script: thực hiện ngầm extension, nhận message từ content script or extension khác => dùng bằng "background"+"scripts"
+UI Elements: thành phần giao diện người dùng thg là hộp thoại popup hiện ra khi ấn vào icon của extension => vd dùng với "browser_action"+"default_popup"
+
+persistent xđ trang background đc chạy như thế nào
+dùng "scripts":[".js"] or "page":".html" vói file html chỉ có 1 thẻ script thêm code js vào
+default_popup dùng để hiển thị file html khi mở extension
+js là danh sách các file js được inject vào trang web nên file js luôn trong 1 mảng còn html là ""
+matches xác định trang web muốn thêm nội dung vào => dùng regexp: "*://*/*" sẽ dùng với mọi trang web(tức trang web nào cx có conten-script này)
+
+background script bắt đầu thực hiện khi ta ấn vào biểu tượng extension, content script tự thực hiện khi ta load 1 trang web mới
+
+
+
+# Query API trong JS thuần
+-> Dùng XMLHttpRequest có sẵn của JS: onreadystatechange, readyState, status, responseText, onload, getResponseHeader, statusText, open, setRequestHeader, send
+
+-> Dùng fetch của JS được tích hợp sẵn trong browser: fetch, ok, status, json, statusText
+
+
+
+# Thao tác với console
+# Dùng cookie
+# Dùng storage
+# Thao tác với Date
+
+
+
+# Other
+-> Tất cả các trình duyệt hiện đại đều hỗ trợ javascript và ta có quyền tắt bật nó tùy ý. Tắt javascript thì chỉ còn html/css nên các tính năng âm thanh, quảng cáo,.. trong trang web sẽ bị vô hiệu hóa, từ đó vô hiệu hóa quảng cáo dẫn tới link có mã độc hay cản trở trang web lấy thông tin của người dùng. Tuy nhiên các lỗ hổng của javascript thường đc vá rất nhanh nên bị người ngoài tấn công qua javascript ít khi xảy ra. Để tắt javascript trong Microsoft Edge: 3 chấm-> setting->site permission->javascript-> ấn tắt
+Javascript frontend k có tính năng đọc ghi file tự động(vì bảo mật) và xử lý đa luông.
+Khi đó, thẻ <noscript> </noscript> là thẻ sẽ hiển thị khi trình duyệt tắt javascript or k hỗ trợ 
+
+-> Tổng kết JS các thứ thường dùng nhất: file tổng kết
+Thao tác với số, string
+Các kiểu duyệt 
+Thao tác với mảng, object, hàm, copy địa chỉ hay giá trị
+Dùng logic lấy đk if else
+
+Ngoài ra còn thường dùng xử lý bất đồng bộ, thao tác với date, export import, dùng local storage, xử lý event

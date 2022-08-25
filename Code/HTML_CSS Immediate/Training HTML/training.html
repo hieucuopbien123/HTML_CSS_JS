@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <!-- # Các thẻ metadata -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="Hieu Nguyen">
+    <meta name="application-name" content="Microsoft Edge">
+    <meta name="generator" content="VSC">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./training.css">
+    <link rel="stylesheet" href="./font-awesome/fontawesome-free-5.12.0-web/css/all.min.css">
+    <script src="./font-awesome/fontawesome-free-5.12.0-web/js/all.min.js"></script>
+    <script type="text/javascript" src="javascript.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <style>
+        /* CSS Selector */
+        input:invalid {
+            border: solid 3px red;
+        }
+
+        /* Tạo animation */
+        .blink{
+            animation-name: blinker;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+        @keyframes blinker {
+            90%{
+                opacity: 0;
+            }
+            /* Các mốc 0 và 100 tự được set là giá trị mặc định */
+        }
+        .moving{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: relative;
+            animation: mymove 2s infinite;
+            animation-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+        }
+        @keyframes mymove {
+            from{ top: 100px; }
+            to{top: -200px;}
+        }
+    </style>
+</head>
+
+<body style="background-color: rgb(224, 208, 208); font-family: sans-serif;" class="background">
+    
+    <!-- # Dùng Position -->
+    <div class="sticky">Sticky box is here but it is overflow</div>
+    <div class="fixed">Fixed</div>
+
+    <!-- # Basic -->
+    <ol type="I">
+        <li>ol có thể dùng xác định</li>
+        <li>với kiểu số or chữ, La Mã</li>
+    </ol>
+
+    <dl>
+        <dt>Tiêu đề</dt>
+        <dd>COntent</dd>
+    </dl>
+
+    <table style="border-spacing: 30px;" cellpadding="10" border="1">
+        <colgroup>
+            <col style="width: 75%; background-color: antiquewhite;">
+            <col style="width: 25%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>Header 1</th>
+                <th>Header 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td align="right">Content 1</td>
+                <td>Content 2</td>
+            </tr>
+            <tr>
+                <td>Content 3</td>
+                <td>Content 4</td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- Các thẻ input -->
+    <input type="text" placeholder="url" pattern="[A-Za-z]{3,}" autocomplete="on" autofocus required>
+    <select>
+        <option value="Cat" selected>Cat</option>
+        <option value="Dog">Dog</option>
+    </select>
+    <textarea cols="30" rows="10">Hello</textarea>
+    <input list="animal">
+    <datalist id="animal">
+        <option value="Cat"></option>
+        <option value="Dog"></option>
+    </datalist>
+    <input type="file" accept="image/png, image/jpeg">
+    <!-- Các kiểu embed media -->
+    <video controls muted width="50%" autoplay="" style="margin: 0 auto; display: block;" preload="auto">
+        <source src="./dia quay.mp4" type="video/mp4" />
+        <p>Your browser doesn't support HTML5</p>
+    </video>
+    <audio controls width="50%" autoplay muted style="margin: 0 auto; display: block;" loop>
+        <source src="./music_bkg.wav" type="audio/wav" />
+    </audio>
+    <object data="./background.jpg" type="image/jpg"></object>
+    <iframe src="#" frameborder="0" width="500px" height="500px"></iframe>
+    <embed type="image/jpg" src="./background.jpg" width="100px" height="100">
+    
+    <img src="./background.jpg" alt="background" width="100" height="100" usemap="#test">
+    <map name="test">
+        <area shape="rect" coords="0,0,100,50" href="./background.jpg" alt="jkl">
+        <area shape="rect" coords="100,50,150,100" href="./background.jpg" download="newname.jpg">
+    </map>
+
+    <!-- # 2D transform -->
+    <div id="box">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+
+    <!-- # Tạo animation -->
+    <div class="blink">Test animation blink</div>
+    <div class="moving">Moving</div>
+
+    <!-- # Basic -->
+    <!-- Các thẻ hiển thị các loại text khác nhau -->
+    <hr width="50%"><!-- hr tự động ra giữa -->
+    <a href="www.google.com">Vô google</a>
+    <em><strike>This</strike> <i><mark>is</mark></i> em</em>
+    <code>&lt;</code>
+    <cite>The cite</cite>
+    <blockquote>blockquote</blockquote>
+    <abbr title="Ha Noi">HN</abbr>
+    <address>Address</address>
+    <bdo dir="rtl">rtl cho nó khác biệt</bdo>
+    <dfn>this is define</dfn>
+    <del>blue</del><ins>black</ins>
+    <pre>Thẻ pre 
+        nè</pre>
+    <sub>subcription</sub>
+    <sup>supscription</sup>
+    <big>Big</big>
+    <small>Small</small>
+
+    <button>Hello</button>
+    <nav>
+        <a href="www.google.com">Google</a>
+        <a href="www.facebook.com">Facebook</a>
+    </nav>
+
+    <noscript>This wont appear</noscript>
+
+    <!-- # Dùng bootstrap -->
+    <!-- Table -->
+    <div class="container-fluid text-dark bg-warning w-75">
+        <div class="row border">
+            <div class="col-sm-6">Header 1</div>
+            <div class="col-sm-6">Header 2</div>
+        </div>
+        <div class="row border">
+            <div class="col-sm-2">Content 1</div>
+            <div class="col-sm-3">Content 2</div>
+        </div>
+    </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="navbar-header ml-sm-2">
+            <a href="#" class="navbar-brand">
+                <img src="" alt="logo" style="width: 64px;">
+            </a>
+        </div>
+        <button class="navbar-toggler mr-1" type="button" data-toggle="collapse" data-target="#navItem">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navItem">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Content 1</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link disabled">Content 2</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Content 3</a>
+                    <span class="caret"></span>
+                    <div class="dropdown-menu dropdown-menu-left">
+                        <a class="dropdown-item" href="#">Content 1.1</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">Content 1.2</a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto"><!-- mr-auto là mr chiếm hết space nhiều nhất có thể -->
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="name">Content: </label>
+                        <input type="text" class="form-control ml-sm-2" placeholder="Content to search" id="name">
+                        <button class="btn btn-outline-primary mr-2" type="submit">Search</button>
+                    </div>
+                </form>
+            </ul>
+        </div>
+    </nav>
+    <!-- Text collapse -->
+    <button class="btn" data-toggle="collapse" data-target="#target">Click to collapse</button>
+    <span class="collapse" id="target">Collape!!</span> <br>
+    <!-- Tab pane -->
+    <ul class="nav flex-lg-row nav-tabs nav-fill">
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#home">HOME</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu1">MENU 1</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" data-toggle="tab" href="#menu2">MENU 2</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane text-center container justity-content-center active" id="home">HOME</div>
+        <div class="tab-pane text-center container justify-content-center fade" id="menu1">Menu 1</div>
+        <div class="tab-pane text-center container justify-content-center fade" id="menu2">Menu 2</div>
+        <!-- ra giữa với tab dùng text-center or d-flex justity-content-center nhưng riêng với tab-content 
+            tab-pane buộc dùng text-center -->
+    </div>
+    <!-- Button group -->
+    <div class="btn-group">
+        <button class="btn btn-outline-primary">Nut 1</button>
+        <button class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+        <!-- Dropdown button -->
+        <div class="dropdown-menu dropdown-menu-left">
+            <a href="#" class="dropdown-item">Content 1</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">Content 2</a>
+        </div>
+    </div>
+    <!-- Căn giữa -->
+    <div class="flex-lg-row d-flex justify-content-center">hello</div>
+
+</body>
+
+</html>

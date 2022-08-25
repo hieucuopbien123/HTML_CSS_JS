@@ -1,0 +1,97 @@
+-> Phím tắt VSC:
+F1 => search
+CTRL+SHIFT+X->extension
+CTRL+SHIFT+E->editor
+CTRL+SHIFT+F->search
+ALT+L+ALT+O
+CTRL+, => mở setting
+CTRL+ENTER CTRL+SHIFT+ENTER
+ALT+SHIFT+A => comment từ đoạn sau trở đi
+
+VSC hỗ trợ emmet 2.0 tự có trong VSC r k cần tải nx. Đó là lý do gõ ! là ra sẵn trang trống r, đó là code emmet do VSC có sẵn
+emmet là công cụ tạo code html và css ngắn gọn, gõ html tốc độ cao
+vc ta gõ 1 phần chữ tự hiện ra gợi ý đó cũng là code emmet
+
+
+-> Các Tool đã cài:
+auto close tag
+auto rename tag
+beautify
+bracket pair colorize
+color highlight
+color info
+css peek
+Indent Rainbow
+live server
+quokka.js
+vscode-icons
+
+
+-> http://127.0.0.1:<port> là đg dẫn truy cập port máy tinh, nó sử dụng mạng loopback dùng trên chính thiết bị đó với cùng đ đầu và cuối dùng 127.0.0.1 or Localhost đều đc
+view source page/CTRL+U
+
+văn bản file bth lưu là .htm cx mở đc bằng web nhưng nó chỉ là văn bản thô, k có các chức năng xuống dòng,... nên dùng các thẻ HTML vô thì nó sẽ thành siêu văn bản(hypertext)
+file .htm < .html
+
+Thử dùng file json để chỉnh sửa setting của liveserver: CTRL+, -> tìm liveServer-> sẽ có các setting mà ta có thể edit trong settings.json, nó sẽ tạo ra file cho ta và chỉ cần chỉnh sửa, ví dụ chỉnh port khi nhiều file phải mở trên cổng khác nhau. Chuyển workspace của liveserver vào thư mục hiện tại
+
+
+-> ECMAScript hay ES6 là 1 đề xuất tiêu chuẩn cho các ngôn ngữ javascript ra đời năm 2015 hay còn gọi là ECMAScript 2015 vì mỗi trình duyệt có cách chạy javascript khác nhau nên cần 1 quy tắc chung để trang web có thể chạy tốt trên mọi trình duyệt. Như v ES6 cx chỉ là các quy tắc, tính năng của javascript mà thôi.
+
+Các phiên bản ES1, ES2,..., ES8 cũng chỉ là các phiên bản JS theo thời gian, các phiên bản sau vẫn dùng được code của các phiên bản trước.
+
+CommonJS là 1 module cung thêm 1 vài cú pháp như hàm require. Tránh nhầm lẫn vì k dùng được CommonJS trong JS thuần mà nó dùng trong NodeJS phía server để hỗ trợ code được JS phía server. Thực tế trong JS thuần ta có thể sử dụng công cụ bên thứ 3 là package Browserify sẽ cho phép phía frontend dùng được CommonJS nhưng điều này là k cần thiết vì các phiên bản ES là quá đủ nên ta chả bh thấy. 
+
+JS là 1 ngôn ngữ lập trình hướng đối tượng vì nó đáp ứng tất cả tính chất của lập trình hướng đối tượng, dù tính chặt chẽ cú pháp của nó khá kém. Thực tế JS kp là class-based object-oriented language như Java, C++, C$,.. Class-based OOP chỉ là 1 nhánh của OOP language. OOP language bao gồm cả prototype-based(object-based) language như JS, Self,.. vì JS vẫn có class.
+
+-> .json là file JavaScript Object Notation là file ban đầu dùng phục vụ các ứng dụng viết bằng javascript(file .js) nhưng do tính ứng dụng cao nên ngày càng dùng cho nhiều ngôn ngữ khác. Thao tác với cặp key value. Ta dùng nó cho việc setup các thứ, lưu thông tin ứng dụng,..
+
+
+-> HTML giúp hiển thị siêu văn bản. Javascript là 1 ngôn ngữ frontend phía client, nhưng nhờ famework NodeJS nên h nó dùng cả cho backend hay javascript bh là ngôn ngữ fullstack. Các hiệu ứng trong các trang web như lướt qua lại, transition là của javascript đó. Nó giúp giảm tải cho server rất nhiều. Ví dụ: ta muốn hiện 1 thông báo thì có thể dùng javascript hàm alert("") nhưng nếu k dùng javascript thì vẫn làm đc bằng cách dùng ngôn ngữ khác phía server backend như PHP, ASP,.. để tạo hộp thoại vẫn đc 
+
+
+-> Có nhiều loại trình duyệt tùy theo nền tảng hệ điều hành khác nhau. VD trong android có Android Browser, iPhone, La bàn, Opera, UC Browser,.. còn trên desktop có Chrome, IE, Firefox, Safari, Cốc Cốc(của VN),..
+Trình duyệt cx chỉ có chức năng hiển thị tài nguyên web sử dụng, ta query tài nguyên đó từ server thông qua url. 
+
+Bao gồm giao diện người dùng(các thứ hiển thị trên màn hình)-> browser engine phân phối công việc giao diện và render engine-> render engine chịu trách nhiệm hiển thị nội dung yêu cầu ra, phân giải html/css ra-> Networking xử lý http request-> bộ thông dịch js chạy code js-> lưu trữ dữ liệu như storage, cookies
+
+Các trình duyệt khác nhau sử dụng rendering engine khác nhau như: Webkit dùng cho Safari, Gecko dùng trong firefox, blink dùng trong chrome, opera,..
+V tại sao lại cần dùng đến các engine khác nhau, bởi vì mỗi thứ có 1 điểm lợi khác nhau, vd 1 cái giải quyết cái gì k tốt thì họ có thể tạo ra 1 engine mới tốt hơn chẳng hạn. Tuy nhiên cho đến h, khả năng xuất hiện 1 engine mới là cực thấp trừ khi có 1 bước tiến mới đáng kể. 
+
+Chromium là 1 trình duyệt mã nguồn mở. Các trình duyệt như chrome cũng sử dụng mã nguồn của chromium để tạo nên đó tuy nhiên nhiều người biết đến chrome chứ k bt đến chromium, chromium bị hạn chế hơn so với chrome. Nên dùng Chromium nếu sử dụng hđh mã nguồn mở. Tức là người ta dùng mã nguồn mở của Chromium để phát triển nên các trình duyệt khác.
+
+
+-> Có nhiều trang web cho hosting miễn phí, vd 000webhost-> vào đăng ký tk free-> tải file lên-> đổi tên file html cần hiển thị đầu tiên là index.js là xong. Dùng free sẽ bị hạn chế chỉ được quản lý 2 website 1 lúc, lượng file size bị giới hạn, tên miền sẽ có thêm 000webhostapp.com
+VD trang web của ta: https://magicnumberfortest.000webhostapp.com/
+
+
+-> DevTool của Browser:
+devtool là công cụ tích hợp sẵn có hầu hết trên mọi trình duyệt hiện đại => CTRL+SHIFT+I / F12 / RightClick+Inspect
+CTRL+SHIFT+C => mở tab Element 
+CTRL+SHIFT+J => mở tab console
+
+Tab Element: HTML, CSS, animation, DOM,..
+Tab Console: Javascript
+Tab Source: xem tất cả các file dùng để tạo trang web và thao tác với chúng
+Tab Network: các dữ liệu đi và về
+Tab Memory: check memory leak trong web
+Tab Application: xem localStorage, cookies. Có thể xóa cookies,..
+Tab Security: chứng chỉ HTTPS và trạng thái thái TLS của trang web
+Tab Lighthouse: báo cáo chức năng và cấu trúc của trang web để developer có thể cải thiện hiệu suất, tối ưu seo=> chọn thiết bị + generate report
+
+Giúp crawl, chỉnh css, tạo responsive app với device mode, xoay ngang màn hình device.. Có thể chỉnh offline, online, cấu hình máy yếu hay mạnh trong cái dropdown No throttling. Trong tab network cũng có low 3G hay Offline,..
+
+Trên tab console: 
+[...$$('img')].forEach(a=>a.remove()); => chọn tất cả thẻ img trong trang nhét vào 1 mảng, duyệt từng phần tử trong mảng r xóa nó
+document.designMode = "on"; => sửa trực tiếp mọi thứ trên trang web
+
+Ở tab network: có thể filter để lọc ra những request loại file gì browser lấy từ server. VD lọc ảnh và lấy link ảnh nhanh
+Ở tab Console: Có thể chỉnh trạng thái element là hover, active, focus,.. để xem style element khi điều đó xảy ra. Có thể lọc ra những log nào có thể hiện VD chỉ lọc log warn và error chẳng han
+Có thể bảo toàn log khi refresh lại trang bằng Preserve Log
+
+Tab Source: ctrl+p -> tìm file -> đặt debugger -> tới line bất kỳ với: ctrl+p -> :100 để tới dòng 100 -> refresh trang thì nó sẽ chạy đến breakpoint là dừng
+No tương đương đặt lệnh debugger; trong file js
+Trong VSC có thể search ký tự gì xuât hiện ở những dòng nào file nào và trong devtool cũng có thể với: ctrl+shift+f
+Để cho file chạy đến dòng nào thì log gì ra có thể: right click breakpoint -> logpoint -> ghi message có thể ghi biến ra thì nó sẽ log biến đó
+Viết autoClick VD: Array.from($$('a.touchable.primary')).forEach(btn => btn.click()) => click tất cả các thẻ a có 2 class .touchable.primary => Toàn viết bằng jQuery thôi. VD: đồng ký tất cả kết bạn
+

@@ -1,0 +1,14 @@
+/* Basic */
+
+.text-green {
+    color: green !important;
+}
+
+#text-violet {
+    padding: 50px;
+    color: violet;
+}
+
+.text-red {
+    color: red;
+}

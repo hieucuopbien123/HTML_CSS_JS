@@ -1,0 +1,79 @@
+<html>
+
+<head>
+    <style type="text/css" media="all">
+        #top {
+            height: 50px;
+            width: 800px;
+            font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+            color: #FFF;
+            font-size: 36px;
+            text-align: center;
+            background-color: #009;
+        }
+
+        #main {
+            height: 200px;
+            width: 800px;
+        }
+
+        #left {
+            height: 201px;
+            width: 165px;
+            text-align: justify;
+            float: left;
+            padding-left: 15px;
+            padding-right: 20px;
+            overflow: hidden;
+        }
+        /* Ở đây ta phải cho height của nó chuẩn ví dụ cho height của left chỉ cần quá xuống dưới 1 tẹo là toang
+        vì copyright đụng 1 tí vào margin-bottom của nó cũng khiến cho text-align của Copyright phải né nó ra 
+        dẫn đến bị lệch. VD xét 201px là toang */
+
+        #right {
+            width: 581px;
+            float: left;
+            border-left: 1px solid;
+            height: 100%;
+            padding-left: 10px;
+        }
+        /* cái này float left nó gặp 1 thg float left bên trái thì né ra và k tính. Nếu k có float left thì nó tính kích 
+        thước cả cái thẻ float left bên trái nó. Nhưng dù tính cả kích thươc nhưng nó k hiển thị đè lên float left mà né 
+        ra, ta có thể thấy border left bị dính vào bên trái của cái bên trái vì nó tính phần content chứa cả cái float 
+        left, chỉ là k hiện thôi */
+
+        #bottom {
+            height: 50px;
+            width: 800px;
+            text-align: center;
+            color: #FFF;
+            font-weight: bold;
+            line-height: 50px;
+            background-color: #009;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="height:300px; width:800px; border:solid thin #00F">
+        <div id="top">Tin hot nhất trong ngày</div>
+        <div id="main">
+            <div id="left">
+                <p>TT - Để mở cánh cửa thép dày cộp dẫn vào tầng hầm chi nhánh ngân hàng Sociestes tại thành phố
+                    Nice(Pháp), hai chiếc chìa khóa phải được tra vào hai ổ khóa đặt ở những vị trí khác nhau. Sicieste
+                    đã rất tự hào về cái gì đó ....</p>
+                <!-- lồng thẻ liên tục, buộc có flex ở cha or float ở con để div k chiếm hết k gian -->
+            </div>
+            <div id="right">
+                <p><span style="font-size:24px; font-weight:800">Tin tức</span></br> TT - Ngày 7-4, UBND huyện Đức Trọng
+                    (Lâm Đồng) cho biết đã ra quyết định kỷ luật cảnh cáo đối với hai trường công an xã Đa Quyn và Tà
+                    Năng vì thiếu tinh thần trách nhiệm trong công tác quản lý.</br></br> W3School - The Largest Web
+                    Developer Site On The Next !</p>
+            </div>
+        </div>
+        <div id="bottom">Copyright</div>
+    </div>
+    
+</body>
+
+</html>

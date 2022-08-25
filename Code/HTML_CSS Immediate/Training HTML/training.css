@@ -1,0 +1,47 @@
+/* Dùng position */
+.sticky{
+    width: 50px;
+    height: 50px;
+    background-color: blueviolet;
+    position: sticky;
+    top: 400px;/* buộc phải có top, có thể k có left */
+    left: 100px;
+    font-weight: bolder;
+    font-size: 14px;
+    overflow: scroll;
+}
+.fixed{
+    width: 50px;
+    height: 50px;
+    background-color: green;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+/* 2D transform */
+#box{
+    width: 500px;
+    height: 200px;
+    transform: rotate(90deg); /* đè lên các thẻ khác */
+    background-color: greenyellow;
+    display: flex;
+}
+#box div{
+    background-color: indianred;
+    width: 100px;
+    height: 100px;
+    margin: 1px;
+}
+#box div:nth-child(2){
+    background-color: blue;
+}
+
+/* Basic */
+.background{
+    width: 1000px;
+    height: 500px;
+    background-image: url(./background.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}

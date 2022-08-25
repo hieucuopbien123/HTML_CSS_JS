@@ -1,0 +1,92 @@
+/* Basic */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.body {
+    background-color: rgb(236, 40, 40);
+}
+
+.background {
+    background-color: white;
+    margin: 0 auto;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 200px;
+}
+
+.top1 {
+    padding-top: 50px;
+    color: gray;
+}
+
+.top2 {
+    text-align: center;
+    width: 50%;
+    padding-top: 20px;
+    font-size: 19px;
+}
+
+.top3 {
+    text-align: center;
+    padding: 30px;
+}
+
+.top4 {
+    font-weight: bold;
+    text-align: center;
+    font-size: larger;
+    width: 60%;
+}
+
+.commontext1 {
+    width: 62%;
+    padding-top: 30px;
+    font-size: larger;
+    text-align: justify;
+}
+
+.img {
+    width: 80%;
+}
+
+.tenanh {
+    text-align: center;
+    padding: 5px;
+}
+
+.topmid {
+    padding-top: 40px;
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    width: 40%;
+}
+
+.cauhoi {
+    padding-top: 20px;
+    font-size: larger;
+    font-weight: bold;
+    font-style: italic;
+    width: 62%;
+}
+
+.commontext2 {
+    width: 62%;
+    padding-top: 20px;
+    font-size: larger;
+}
+
+.commontext3 {
+    padding-top: 20px;
+}
+
+.bailienquan {
+    display: flex;
+    width: 45%;
+    flex-direction: row;
+}
