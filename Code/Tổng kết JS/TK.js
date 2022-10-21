@@ -125,7 +125,8 @@ var {name: tName, age: tAge} = var3;//copy có thể đổi sang tên khác => n
 var {name, ...other} = var3;//copy nhưng dùng cùng tên, nếu có biến tên đó sẵn r thì k đc
 
 // Cách copy giá trị hay địa chỉ của mảng
-var var2Test2 = [...var2, 4];//copy, nên dùng nhất
+var var2Test2 = [...var2, 4];//copy, nên dùng nhất => k dung với multidimension array. Nếu thế sẽ phải dùng for
+// Refer tới ### Module JS trong React
 
 var [a,, c] = var2;//copy
 

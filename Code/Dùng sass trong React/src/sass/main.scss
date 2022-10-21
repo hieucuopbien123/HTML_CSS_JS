@@ -1,0 +1,8 @@
+// Cách tổ chức dự án dùng scss
+// Các file all và file main này chỉ có mỗi import để gom thôi, chi tiết được viết trong các file riêng
+
+@import "base/all";
+@import "modules/all";
+@import "layout/all";
+@import "state/all";
+@import "pages/all";

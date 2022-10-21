@@ -25,14 +25,14 @@ button:hover {
     background-color: wheat;
 }
 
-img {
+img .a {
     width: 50px;
     top: 100px;
     left: 100px;
     position: absolute;
     z-index: 99;
 }
-img {
+img .a {
     animation-name: pacman;
     animation-duration: 4s;
     animation-timing-function: linear;
@@ -242,10 +242,9 @@ img {
 .abc::first-letter{
     color: red;
 }
-.abc::selection{    
+.abc::selection{ /* khi bôi đen để select */
     color: cyan;
 }
-
 
 /* Thao tác với border */
 .test{
@@ -262,8 +261,9 @@ img {
     /*border-image-outset: lượng image area mở rộng ra bên ngoài box. Dùng cái này có thể khiến border-image che đi
     phần border thực hình chữ nhật của cạnh or nằm bên trong or nằm bên ngoài tùy chỉnh */
     /*border-image-repeat: space, stretch, repeat, round. Cái round luôn fit, cái repeat k fit, stretch dãn phần
-    giữa, space tương tự như round nhưng k co nhỏ để fit mà các tile ảnh chồng đè lên nhau */
-    /* ta có thể dùng kiểu border-image: url(...) 27 round repeat; tức round vertical và repeat horizontal */
+    giữa, space tương tự như round nhưng k co nhỏ để fit mà các tile ảnh chồng đè lên nhau. Cái round luôn fit nhưng
+    khi màn hình co nhỏ thì từng cục bị co dít lại nhìn xấu */
+    /* Ta có thể dùng kiểu border-image: url(...) 27 round repeat; tức round vertical và repeat horizontal */
 }
 
 

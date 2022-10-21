@@ -1,0 +1,44 @@
+RevealJS:
+Thư viện giúp tạo slide bằng html css js. Tạo hoàn toàn bằng code thuần và có thể dùng F11 để show toàn màn hình
+Đặc điểm là slide có animation đẹp hơn và cho phép show trên cả 4 nút di chuyển chứ kp chỉ sang trái sang phải như powerpoint
+
+-> Nếu như tạo slide để thuyết trình thì ta có thể dùng tool rất mạnh là power point, canva. Còn revealjs cũng có tool editor online cho vc tạo slide là https://slides.com
+=> Ta chỉ cần dùng nó khi tạo slide thuyết trình, k dùng làm web site được vì nó k hỗ trợ React18, cx k có wrapper lib nào giúp làm vc này
+
+
+
+# Basic:
+-> Cài đặt và setup: Ta dùng nó như 1 plugin
+Tải về từ trang git: https://github.com/hakimel/reveal.js -> Lấy thư mục dist copy vào dự án
+-> Tạo file html và thêm vào <head>:
+<link rel="stylesheet" href="./dist/reveal.css">
+<link rel="stylesheet" href="./dist/theme/white.css" id="theme">
+<style type="text/css" media="screen">
+    body, html{
+        overflow: auto !important;
+    }
+    .reveal{
+        width: 400px;
+        height: 400px;
+    }
+</style>
+-> Thêm vào <body>:
+<div class="reveal">
+    <div class="slides">
+        <section>Slide 1</section>
+        <section>Slide 2</section>
+    </div>
+</div>
+<script src="./dist/reveal.js"></script>
+<script>
+    Reveal.initialize();
+</script>
+
+-> Tùy vào sử dụng loại theme khác nhau mà link đến file khác nhau
+Ở trong từng thẻ section, ta có thể code html thuần trong phạm vi 1 ô slide. Mặc định mọi thứ code sẽ ra giữa của slide. Có rất nhiều option truyền vào hàm initialize, attribute truyền vào thẻ section hay các class có sẵn mà ta có thể override để tạo style khác. 
+Các option của hàm initialize đầy đủ: https://revealjs.com/config
+
+Trong thư mục examples của git có các ví dụ sử dụng reveal với các theme khác nhau nên dùng làm VD code. Nó hỗ trợ đầy đủ phương trình toán học, link, transition, theme, nhiều plugin mạnh, nhúng pdf hay hẳn 1 trang web khác vào để tương tác trực tiếp
+=> Chi tiết: https://revealjs.com/code/
+
+

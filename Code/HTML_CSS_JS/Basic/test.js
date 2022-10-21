@@ -99,8 +99,7 @@ var object1 = {
 object1._property1 = "hieucuopbien";
 console.log(object1.listAll);
 
-// Các tính năng hay
-// Dùng descriptor
+// # Dùng descriptor
 var descriptor = Object.getOwnPropertyDescriptors(object1);
 console.log(descriptor.property1);
 console.log(descriptor.doSth);

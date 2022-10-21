@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./final.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        /* # Dùng scroll / Dùng scroll-snap */
+        .section {
+            overflow-x: auto;
+            white-space: nowrap;
+            scroll-snap-type: x mandatory;
+            scroll-snap-stop: always;
+            scroll-padding: 0 0 0 50px;
+        }
+
+        .section .section__item:nth-child(1) {
+            background-color: cyan;
+        }
+
+        .section .section__item:nth-child(2) {
+            background-color: yellow;
+            scroll-margin-left: 20px;
+        }
+
+        .section .section__item:nth-child(3) {
+            background-color: green;
+        }
+
+        .section .section__item:nth-child(4) {
+            background-color: blue;
+        }
+
+        .section .section__item:nth-child(5) {
+            background-color: violet;
+        }
+
+        .section__item {
+            width: 300px;
+            height: 200px;
+            display: inline-block;
+            scroll-snap-align: start;
+        }
+    </style>
+
+    <!-- # Dùng scroll / Ẩn thanh scrollbar nhưng vẫn giữ nguyên chức năng -->
+    <style>
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- # Dùng scroll / Dùng scroll-snap -->
+    <div class="section">
+        <div class="section__item">Item 1</div>
+        <div class="section__item">Item 2</div>
+        <div class="section__item">Item 3</div>
+        <div class="section__item">Item 4</div>
+        <div class="section__item">Item 5</div>
+    </div>
+
+    <!-- # Dùng scroll / Dùng overscroll-behavior -->
+    <div style="width: 100px; height: 100px; overflow: auto;">
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate provident quibusdam natus quod dolorum 
+            animi veniam ullam aspernatur, necessitatibus inventore nam! Aliquid mollitia totam esse sit, neque soluta. 
+            Similique, quaerat!
+        </p>
+    </div>
+
+    <!-- # Component hay /  Có sẵn: tạo quốc kỳ của mọi quốc gia trên thế giới bằng css -->
+    <style>
+        h3 {
+            position: absolute;
+            text-align: center;
+            top: 20px;
+        }
+
+        /* Main Style Stars from here  */
+        .flag {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        .vietnam {
+            background-color: #db2017;
+            display: grid;
+            place-items: center;
+        }
+
+        .vietnam::before {
+            position: absolute;
+            content: "";
+            height: 110px;
+            aspect-ratio: 1;
+            background: #ff0;
+            clip-path: polygon(50% 0%,
+                    61% 35%,
+                    98% 35%,
+                    68% 57%,
+                    79% 91%,
+                    50% 70%,
+                    21% 91%,
+                    32% 57%,
+                    2% 35%,
+                    39% 35%);
+        }
+    </style>
+    <div class="flag vietnam"></div>
+
+    <!-- # Basic CSS / Các thuộc tính lạ / color-scheme -->
+    <style>
+        .colorScheme {
+            color-scheme: light dark;
+        }
+    </style>
+    <div class="colorScheme">
+        <div>Hello</div>
+        <textarea name="" id="" cols="30" rows="10">Hello World</textarea>
+    </div>
+
+    <!-- # Responsive css / Dùng @media trong css3 -->
+    <!-- Mặc định ta k set mode gì trong các ứng dụng bth nên nó coi là light mode và chỉ phần @media dùng light
+        hoạt động được  -->
+    <style>
+        .day {
+            background: #eee;
+            color: black;
+        }
+
+        .night {
+            background: #333;
+            color: white;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .day.dark-scheme {
+                background: #333;
+                color: white;
+            }
+
+            .night.dark-scheme {
+                background: black;
+                color: #ddd;
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .day.light-scheme {
+                background: white;
+                color: #555;
+            }
+
+            .night.light-scheme {
+                background: #eee;
+                color: black;
+            }
+        }
+
+        .day,
+        .night {
+            display: inline-block;
+            padding: 1em;
+            width: 7em;
+            height: 2em;
+            vertical-align: middle;
+        }
+    </style>
+    <div class="day">Day (initial)</div>
+    <div class="day light-scheme">Day (changes in light scheme)</div>
+    <div class="day dark-scheme">Day (changes in dark scheme)</div>
+    <br />
+    <div class="night">Night (initial)</div>
+    <div class="night light-scheme">Night (changes in light scheme)</div>
+    <div class="night dark-scheme">Night (changes in dark scheme)</div>
+
+    <!-- # Responsive css / Dùng @supports -->
+    <style>
+        .syn-none {
+            font-synthesis: none;
+        }
+
+        .supports {
+            display: block;
+        }
+
+        @supports (font-synthesis: none) {
+            .supports {
+                display: none;
+            }
+        }
+
+        .syn {
+            background: #969481;
+            border-radius: 16px;
+            padding: 1em 2em;
+        }
+    </style>
+    <p class="supports">👋 Your browser does not currently support the <code>font-synthesis</code> property.</p>
+
+    <!-- # Dùng font / Dùng font-systhesis / Dùng text-rendering -->
+    <!-- Font hỗ trợ hết nên hiện hết mà -->
+    <div class="syn">
+        <p class="syn-none">This line of text applies the <code>none</code> keyword, so nothing should be
+            <strong>bold</strong> or <i>oblique</i>.
+        </p>
+    </div>
+
+    <style>
+        .useTextRendering {
+            text-rendering: optimizeSpeed;
+        }
+    </style>
+    <div class="useTextRendering">fi fl ff li</div>
+
+    <!-- # Basic / Các thuộc tính lạ / Các property của column -->
+    <style>
+        .newspaper {
+            column-count: 3;
+            column-gap: 40px;
+            column-rule-style: solid;
+            column-rule-width: 1px;
+            column-rule-color: lightblue;
+        }
+    </style>
+    <div class="newspaper">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
+        dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
+        suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
+        vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et
+        iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+        Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer
+        possim assum.
+    </div>
+
+    <!-- # Shadow DOM và Virtual DOM -->
+    <i>I am <span id="sd-root">shadow</span> root</p>
+    <script>
+        const host = document.querySelector("#sd-root");
+        host.attachShadow({mode: "open"});
+        // Éo hiểu sao nhưng shadow root nó éo hiện ra => k cần qt
+    </script>
+
+    <!-- # Basic / Dùng SVG element -->
+    <style>
+        .circle {
+            pointer-events: all; /* enable event cho các svg element */
+        }
+        .circle:hover {
+            fill: red;
+        }
+    </style>
+    <svg width='100' height='100'>
+        <circle class="circle" cx='50' cy='50' r='40' stroke='green' stroke-width='4' fill='yellow' />
+    </svg>
+
+</body>
+
+</html>

@@ -37,3 +37,20 @@
 .hoverTest:hover{
     background-color: red;
 }
+
+/* CSS Selector */
+/* Người ta thường dùng :is(<>) để simplify câu lệnh css phức tạp */
+.themeSection.light:hover .middleTheme,
+.themeSection.light:focus-within .middleTheme,
+.themeSection.dark:hover .middleTheme,
+.themeSection.dark:focus-within .middleTheme,
+.themeSection.auto:hover .middleTheme,
+.themeSection.auto:focus-within .middleTheme {
+    color: red;
+}
+/* Co nhỏ thành */
+.themeSection:is(
+    .light, .dark, .auto
+):is(:hover, :focus-within) .middleTheme {
+    color: red;
+}

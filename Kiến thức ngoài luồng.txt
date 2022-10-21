@@ -8,6 +8,8 @@ CTRL+, => mở setting
 CTRL+ENTER CTRL+SHIFT+ENTER
 ALT+SHIFT+A => comment từ đoạn sau trở đi
 
+Trong VSC để paste ta dùng CTRL+V như bth, nhưng với các option của các package khi paste phải dùng CTRL + SHIFT + V
+
 VSC hỗ trợ emmet 2.0 tự có trong VSC r k cần tải nx. Đó là lý do gõ ! là ra sẵn trang trống r, đó là code emmet do VSC có sẵn
 emmet là công cụ tạo code html và css ngắn gọn, gõ html tốc độ cao
 vc ta gõ 1 phần chữ tự hiện ra gợi ý đó cũng là code emmet
@@ -40,7 +42,7 @@ Thử dùng file json để chỉnh sửa setting của liveserver: CTRL+, -> t�
 
 Các phiên bản ES1, ES2,..., ES8 cũng chỉ là các phiên bản JS theo thời gian, các phiên bản sau vẫn dùng được code của các phiên bản trước.
 
-CommonJS là 1 module cung thêm 1 vài cú pháp như hàm require. Tránh nhầm lẫn vì k dùng được CommonJS trong JS thuần mà nó dùng trong NodeJS phía server để hỗ trợ code được JS phía server. Thực tế trong JS thuần ta có thể sử dụng công cụ bên thứ 3 là package Browserify sẽ cho phép phía frontend dùng được CommonJS nhưng điều này là k cần thiết vì các phiên bản ES là quá đủ nên ta chả bh thấy. 
+CommonJS là 1 module cung thêm 1 vài cú pháp như hàm require. Tránh nhầm lẫn vì k dùng được CommonJS trong JS thuần mà nó dùng trong NodeJS phía server để hỗ trợ code được JS phía server. Thực tế trong JS thuần ta có thể sử dụng công cụ bên thứ 3 là package Browserify sẽ cho phép phía frontend dùng được CommonJS nhưng điều này là k cần thiết vì các phiên bản ES là quá đủ nên ta chả bh thấy. Ngược lại, package babel cho phép convert ES6 sang CommonJS để NodeJS dùng được.
 
 JS là 1 ngôn ngữ lập trình hướng đối tượng vì nó đáp ứng tất cả tính chất của lập trình hướng đối tượng, dù tính chặt chẽ cú pháp của nó khá kém. Thực tế JS kp là class-based object-oriented language như Java, C++, C$,.. Class-based OOP chỉ là 1 nhánh của OOP language. OOP language bao gồm cả prototype-based(object-based) language như JS, Self,.. vì JS vẫn có class.
 
@@ -94,4 +96,18 @@ No tương đương đặt lệnh debugger; trong file js
 Trong VSC có thể search ký tự gì xuât hiện ở những dòng nào file nào và trong devtool cũng có thể với: ctrl+shift+f
 Để cho file chạy đến dòng nào thì log gì ra có thể: right click breakpoint -> logpoint -> ghi message có thể ghi biến ra thì nó sẽ log biến đó
 Viết autoClick VD: Array.from($$('a.touchable.primary')).forEach(btn => btn.click()) => click tất cả các thẻ a có 2 class .touchable.primary => Toàn viết bằng jQuery thôi. VD: đồng ký tất cả kết bạn
+
+
+-> Cách trình duyệt hiển thị website:
+Sử dụng file HTML tạo DOM: đọc từ trên xuống tạo cây DOM. Nên đặt style ở đầu và script ở cuối vì trình duyệt bth luôn cần css load sớm để hiện ra còn tính năng k cần load ngay. Đấy là với ứng dụng bth chứ React luôn load js.
+
+Load CSS tạo CSSOM(CSS object model): Trình duyệt chỉ hiển thị khi cả DOM và CSSOM được tạo hoàn chỉnh nên CSSOM cũng chặn quá trình render trang web(Render Blocking). Do đó nên giảm kích thước style và load càng sớm càng tốt, xóa các style dư thừa để trình trì hoãn tối đa
+
+Load JS: nếu thấy file js or script, sẽ dừng vc parse HTML để lý JS (Parse Blocking) 
+Trong script có 2 attribute là async và defer: async sẽ tải script bất đồng bộ trên 1 thread khác và tiếp tục parse trang, tải xong JS sẽ chạy; defer chỉ chạy khi html parse xong.
+VD: Trình duyệt đang parse HTML CSS thì gặp 1 script async -> trình duyệt tiếp tục parse HTML CSS trong khi tải script -> trình duyệt parse HTML chưa xong nhưng tải xong script thì vẫn chạy script bất cứ lúc nào khi tải xong
+VD: Trình duyệt đang parse HTML CSS thì gặp 1 script defer -> trình duyệt tiếp tục parse HTML CSS trong khi tải script -> trình duyệt parse HTML chưa xong nhưng tải xong script thì script k được exec -> parse HTML xong thì exec script đã tải
+=> asyn hay khi script độc lập với DOM(ít khi), defer khi script tác động vào DOM, cần DOM load xong trước
+
+Kết hợp DOM và CSSOM tạo Render Tree và render ra màn hình -> Xác định size và vị trí các phần tử trong trang web -> Paint ra màn hình
 

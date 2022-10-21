@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>reveal.js - Slide Backgrounds</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="./dist/reveal.css">
+		<link rel="stylesheet" href="./dist/theme/white.css" id="theme">
+		<style type="text/css" media="screen">
+            body, html{
+                overflow: auto !important;
+            }
+            .reveal{
+                width: 400px;
+                height: 400px;
+            }
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background="#934f4d">
+					<h2>Slide 1</h2>
+					<h2>Slide 1</h2>
+				</section>
+				<section>
+					<section data-background="#934f4d">
+						<h2>Slide 2</h2>
+					</section> 
+					<section data-background="#934f4d">
+						<h2>Slide 3</h2>
+					</section>
+                    <section data-background="#934f4d">
+						<h2>Slide 4</h2>
+					</section>
+				</section>
+			</div>
+		</div>
+		<script src="./dist/reveal.js"></script>
+		<script>
+			Reveal.initialize();
+		</script>
+	</body>
+</html>
