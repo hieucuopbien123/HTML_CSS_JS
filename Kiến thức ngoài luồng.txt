@@ -16,10 +16,10 @@ vc ta gõ 1 phần chữ tự hiện ra gợi ý đó cũng là code emmet
 
 
 -> Các Tool đã cài:
-auto close tag
+auto close tag => tự có
 auto rename tag
 beautify
-bracket pair colorize
+bracket pair colorize -> tự có
 color highlight
 color info
 css peek
