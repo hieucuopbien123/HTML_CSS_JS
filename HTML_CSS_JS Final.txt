@@ -1,0 +1,109 @@
+-> Thuộc tính title của các thẻ div, p,... thì hover vào các thẻ đó sẽ hiện ra tooltip là value của title
+
+-> Dùng tool quokka trong VSC: CTRL+K rồi E để exit, CTRL+K rồi Q để chạy lại quokka => sau khi cài quokkajs extension của VSC
+Có thể: CTRL+SHIFT+P để tìm và bật quokka
+
+-> CSS short for Cascading Style Sheets
+Normal flow là tính chất bth của layout khi mà ta chưa làm gì để chỉnh sửa. Vd display static là default value của 1 element khi nó làm việc trong normal flow. position absolute theo các thẻ cha nào gần nhất có position khác static
+box-sizing: border-box tốt hơn default vì ta chỉnh được thêm padding để tạo space xung quanh content bằng cách chỉnh padding
+
+-> var và let dùng với function nó như 1 biến chuẩn bth như dưới:
+var a = 10;
+function test(){
+    var a = 20;
+}
+console.log(a); // 10
+test();
+console.log(a); // 10
+
+=> Dùng với function như vậy và cần phân biệt với block scope của trong cặp {}
+{
+  let a = 1;
+  var b = 2;
+}
+Bên ngoài này dùng được b, k dùng được a
+=> Riêng với block scope thì var sẽ mang giá trị global, let sẽ chỉ dùng trong block đó thôi. TH này const giống let, chỉ riêng biến var là k có sự chặt chẽ
+
+-> Hiển thị dấu 3 chấm khi text quá dài nhưng multiline. Trước h ta toàn chơi text dài nhưng trên 1 dòng.
+.css{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  width: 100px;
+}
+=> Tức chữ quá 2 dòng, mỗi dòng dài 100px thì phần còn lại ẩn và ở cuối dòng thứ 2 sẽ có ...
+Đây là ta viết trong css thuần và dùng React vẫn khuyến khích dùng trong file css thuần. Nếu dùng trong style inline cho 1 component phải chuyển "-webkit-line-clamp": 2; thành WebkitLineClamp: 2, vì nó k nhận diện được
+
+-> Click chuột là đổi màu 1 vài thẻ
+Thay vì dùng JS selector chọn mọi thẻ và chạy vòng for để set style or class name cho nó, cách khác là mọi thẻ ta định đổi màu sẽ có thêm 1 class và class này dùng css variable lưu màu. Khi click chuột ta đổi giá trị css variables đó của :root là xong. Dù code dài hơn nhưng tốc độ nhanh hơn là chạy vòng for.
+
+Điểm hay là nó như 1 cái kiểu clickaway listener, khi click chỗ khác thì nó k còn focus nữa sẽ mang lại style ban đầu. Trong JS làm điều này thao tác với vị trí pointer rất mất công
+
+-> Event click chuột vào 1 phần tử trong list mà k cần JS:
+Từng item thêm tabIndex={index}, trong css bắt sự kiện thẻ đó ::focus r chỉnh style thoải mái. Dùng nhanh thì ok nhưng css thuần rất hạn chế, nh thứ buộc phải dùng JS.
+
+-> Responsive mà k cần @media:
+VD: 2 thẻ a và b chiếm 60% 40% trên cùng hàng, khi co nhỏ đến 1 mức sẽ nằm thành 1 cột và mỗi cái tự chiếm fullwidth
+
+--> Dùng flex bình thường
+Mặc định có flex: 0 1 auto; lần lượt là flex-grow flex-shrink flex-basis. Ta có thể hiểu là: [max grow][min shrink][ideal width]
+flex-grow là 0 tức width phụ thuộc vào content bên trong, k kéo dãn gì thì ít nhất nó vẫn phải bằng với content bên trong. Khi dùng 1 thẻ flex-grow 3 và 1 thẻ flex-grow 1 thì thẻ flex-grow 1 mà có content quá dài sẽ có thể lớn hơn cả thẻ flex-grow 3 khi container nhỏ. Tức là content bên trong cũng ảnh hưởng và thuộc tính này nó chỉ ảnh hưởng đến phần có thể kéo dài thêm ra mà thôi
+flex-shrink thì kích thước nhỏ nhất có thể co lại của 1 element. Mặc định tất cả là 1 tức mọi thẻ co lại như nhau. Nếu flex-grow và flex-shrink đều là 0 thì chúng sẽ giữ nguyên kích thước ban đầu, k shrink gì hết. Nếu set auto thì cứ tà tà dùng theo content bên trong.
+VD ta dùng 1 thẻ có flex: 0 1 1000px; => tức ta bảo browser rằng hãy cố fit kích thước lý tưởng là 1000px, nếu k được thì bắt đầu chiếm kích thước đó theo tỉ lệ so với các flex item khác. Lúc này giả sử các item khác rất nhỏ và container cũng khá nhỏ. Khi đó thẻ này lớn cần có lại mà flex-shrink là 1 nên nó cứ co hết lại cho fit thôi. Nếu dùng 0 0 1000px thì thẻ vẫn chiếm 1000px k shrink gì hết.
+
+Kết hợp flex-wrap chỉ xuống dòng nếu cả 2 thẻ k đủ chỗ nữa rồi
+=> Hiểu nhanh là khi render, nó ưu tiên render theo tỉ lệ kích thước lý tưởng. Nếu màn hình quá lớn khiến thẻ lớn hơn kích thước lý tưởng thì phần grow ra sẽ theo tỉ lệ flex-grow. Nếu container nhỏ khiến kích thước thẻ dưới mức lý tưởng thì nếu có flex-wrap sẽ xuống dòng vì cố render cho thỏa mãn ideal size flex-basis, còn không thì phần co lại sẽ theo tỉ lệ flex-shrink
+
+=> Do đó để có được responsive, ta có thể tùy biến: Dùng flex-wrap. 
+Thẻ a cho flexGrow 100, thẻ b cho flexGrow 1, 2 cái set flex-basis kích thước min của nó(khi 1 trong 2 cái k đủ sẽ tự xuống dòng). VD ở TH này ta set flexGrow như v vì ta muốn thẻ b luôn ở kích thước lý tưởng kbh grow thêm, thẻ a có chứa nhiều thứ có thể grow nên để 100. Ta k set flex-grow thẻ b là 0 vì nếu là 0 thì khi chia thành 1 cột 2 hàng, thẻ b sẽ k grow fullwidth nữa
+Có thể chỉnh flexGrow khác đi thoải mái tùy 2 thẻ muốn grow tỉ lệ như nào
+
+=> Ở đây để có responsive, ta cứ nghĩ là impossible vì ban đầu 2 thẻ chiếm 1 lượng kích thước, sau này co lại thì lại thành chiếm fullwidth ở từng row. Nhưng flex đã làm điều đó bằng cách: flex-basis + flex-wrap để xác định mốc co lại, flexGrow để xác định kích thước chiếm fullWidth hay bao nhiêu từ đầu.
+
+--> Dùng auto-fit và minmax của display grid
+=> Cách trên làm cho element cuối luôn chiếm full width, dùng cách này cho cơ chế tương tự nhưng width phần tử cuối bằng với width các item
+
+.container {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(400px,1fr)); /*this */
+  gap:10px;
+}
+=> Rất gọn, chỉ cần container ngoài dùng như v. Ta đảm bảo là các item luôn auto fit vào container và minmax định nghĩa 400px là mốc min của từng item, nếu nhỏ hơn sẽ xuống dòng, 1fr là kích thước 1 cột cứ để v. 
+
+--> Dùng flex pro hơn:
+Các cách trên k kiểm soát được 1 hàng có bnh cột. Đồng nghĩa với màn hình siêu lớn nó sẽ chứa được toàn bộ item trên 1 hàng. Ta có thể kiểm soát được điều này.
+
+Tương tự các 1 nhưng thuộc tính flex của từng item được tính động. VD ta muốn 1 row chỉ có max 3 item thì làm kiểu: container có flex với gap là 10px còn từng item thì:
+flex: max(400px, 100%/3 - 20px); tức 1 thẻ width lý tưởng là 1/3 màn hình là được. 
+Cách khác là flex: max(400px, 100%/4 + 0.1%); => tức 1 item có 100%/4 là width nhưng +0.1% để overflow và item thứ 4 sẽ bị xuống dòng => cách này tốt hơn vì ta k cần lo về gap là bnh nữa
+
+--> Dùng grid pro hơn => kiểm soát khi nào item bị wrap
+
+Vai trò hàm clamp. VD: clamp(100%/(N + 1) + 0.1%, 400px, 100%) => (min val, preferval, max val)
+Nếu thẻ đó có kích thước lớn hơn 400px sẽ thành 100%/(N + 1) + 0.1% vì màn hình tăng kích thước lên thì kiểu gì cũng có 1 lúc thẻ đó có kích thước lớn hơn 400px
+Nếu thẻ đó có kích thước nhỏ hơn 400px sẽ thành 100%
+
+VD: grid-template-columns:repeat(auto-fit,minmax(clamp(100%/(var(--n) + 1) + 0.1%,var(--w),100%),1fr)); với --n là 3 và --w là 400px
+=> Khi màn hình tăng làm item trong grid có width lớn hơn --w thì kích thước nó sẽ thành là 100%/(var(--n) + 1) + 0.1% và 1 row có --n item
+Khi màn hình co lại làm container nhỏ hơn 400px thì 1 item có kích thước min là 100% tức 1 row 1 item
+
+--> Đó là ta check kích thước của item như nào thì sẽ co về thành như nào. Chứ vẫn chưa thao tác được với kích thước màn hình. Ta muốn làm nó y hệt @media query thao tác với kích thước screen cơ:
+
+=> clamp(100%/(N + 1) + 0.1%, (400px - 100vw)*1000, 100%)
+
+Tức là khi màn hình lớn hơn 400px, 400px - 100vw sẽ cho ra giá trị âm thì bé hơn min val và phải lấy minval là 100%/(N + 1) + 0.1% => 1 row n item
+Khi màn hình nhỏ hơn 400 thì 400px - 100vw cho ra giá trị dương nhưng nhân với 1000 làm nó lớn hơn max value nên sẽ lấy max val là 100% => 1 row 1 item
+=> Thế là thao tác y hệt media query mà k dùng câu lệnh media query
+
+Tương tự thao tác với media query để tăng từ 1 row n item sang 1 row m item
+clamp(100%/(N + 1) + 0.1%, (400px - 100vw)*1000, 100%/(M + 1) + 0.1%)
+
+=> Theo thứ tự: one line of code -> chỉnh được width của element cuối -> kiểm soát 1 row có bnh phần tử -> kiểm soát khi nào item được wrap -> kiểm soát khi nào item được wrap theo kích thước màn hình
+
+Hàm clamp hiểu là v nhưng thực ra k ổn. Nếu hiểu như trên thì nó chỉ được 2 mốc màn hình là xong nhưng thực tế làm như v nó responsive nhiều mốc màn hình, hay N chỉ là maximum number of item per row thôi. Khi kích thước thẻ lớn hơn 400, nó k thực sự là 100%/(N + 1) + 0.1% mà có thể lớn hơn gây ra 1 row ít item hơn. Ta éo hiểu vì sao lại v, có thể là trung bình cộng
+
+-> Pattern string find 1 string khác: 
+str1.trim().replaceAll(",","").replaceAll(".","").toLowerCase().includes(str2.trim().replaceAll(",","").replaceAll(".","").toLowerCase());
+
+

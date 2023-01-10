@@ -20,6 +20,7 @@ auto close tag
 auto rename tag
 beautify
 bracket pair colorize
+todo highlight
 color highlight
 color info
 css peek
@@ -27,6 +28,8 @@ Indent Rainbow
 live server
 quokka.js
 vscode-icons
+
+Nên setting thêm tab size, format on save, emmet wrap
 
 
 -> http://127.0.0.1:<port> là đg dẫn truy cập port máy tinh, nó sử dụng mạng loopback dùng trên chính thiết bị đó với cùng đ đầu và cuối dùng 127.0.0.1 or Localhost đều đc
@@ -105,9 +108,9 @@ Load CSS tạo CSSOM(CSS object model): Trình duyệt chỉ hiển thị khi c�
 
 Load JS: nếu thấy file js or script, sẽ dừng vc parse HTML để lý JS (Parse Blocking) 
 Trong script có 2 attribute là async và defer: async sẽ tải script bất đồng bộ trên 1 thread khác và tiếp tục parse trang, tải xong JS sẽ chạy; defer chỉ chạy khi html parse xong.
-VD: Trình duyệt đang parse HTML CSS thì gặp 1 script async -> trình duyệt tiếp tục parse HTML CSS trong khi tải script -> trình duyệt parse HTML chưa xong nhưng tải xong script thì vẫn chạy script bất cứ lúc nào khi tải xong
+VD: Trình duyệt đang parse HTML CSS thì gặp 1 script async -> trình duyệt tiếp tục parse HTML CSS trong khi tải script -> trình duyệt parse HTML chưa xong nhưng tải xong script thì vẫn chạy script bất cứ lúc nào khi tải script xong
 VD: Trình duyệt đang parse HTML CSS thì gặp 1 script defer -> trình duyệt tiếp tục parse HTML CSS trong khi tải script -> trình duyệt parse HTML chưa xong nhưng tải xong script thì script k được exec -> parse HTML xong thì exec script đã tải
-=> asyn hay khi script độc lập với DOM(ít khi), defer khi script tác động vào DOM, cần DOM load xong trước
+=> async hay khi script độc lập với DOM(ít khi), defer khi script tác động vào DOM, cần DOM load xong trước
 
 Kết hợp DOM và CSSOM tạo Render Tree và render ra màn hình -> Xác định size và vị trí các phần tử trong trang web -> Paint ra màn hình
 

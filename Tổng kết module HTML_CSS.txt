@@ -11,6 +11,7 @@ Chú ý text-align ngoài center còn có right, left nên dùng khi cần chữ
 Thẻ br xuống 1 dòng k kiểm soát đc chiều height. Nó dùng cho html, còn thẻ <br/> dùng cho XHTML mở rộng hơn mà thôi
 
 -> Dùng SVG element: Dùng rất ez, bộ thuộc tính của nó rất lớn và phức tạp, là 1 mảng riêng. Thg thì vẽ r generate ra svg chứ đừng code thuần svg.
+Dùng fill trong svg chỉnh màu chung của cả ảnh
 
 -> Các thẻ block và inline cơ bản:
 Thẻ block luôn chiếm 1 dòng nên khi set width cho nó thì body nó nhỏ lại và phần k chiếm trở thành margin thôi
@@ -21,6 +22,11 @@ Thẻ inline k thể xét margin theo chiều dọc, padding theo chiều dọc 
 -> Các thẻ input 
 --> input text default tự động là nếu width nó lớn hơn thẻ bao nó thì tự bị ẩn phần sau đi, kiểu overflow có thể đi ngang ấy chứ k sợ hiện tràn ra
 --> input radio thì check r sẽ k thể uncheck cái đó. Nếu muốn có 1 group input radio chỉ cho chọn 1 thì phải đặt chung trường name với nhau
+
+--> Thẻ input dùng type number có thể custom cái nút tăng giảm spin button. Chỉ cần trỏ vào class của nó trong shadow DOM với: input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button
+Nó có thuộc tính -webkit-appearance ta chỉnh là none chẳng hạn thì nó sẽ k hiện
+=> Dùng cái này cũng được khi cần input number, trong thực tế tiền tố -websit- làm nó k an toàn. Nếu ta sợ với các trình duyệt khác webkit sẽ gây lỗi thì có thể dùng type text xong dùng pattern lọc ra số rồi tự dùng position absolute thêm ảnh để customize spin button ok.
+=> refer tới: "Projects / Ticket"
 
 Các thẻ input khi dùng bth thì k có autocomplete, nhưng nếu thêm id="email,name,..." thì sẽ có autocomplete 1 cách tự động. Ta cũng có thể custom vẫn dùng id nhưng bỏ autocomplete bằng cách thêm vào: aria-autocomplete="list"
 
@@ -65,10 +71,10 @@ CSS3 là version mới của css chia ra làm nhiều module có các nhiệm v�
 
 Thường thì ta có thể xét fix tỉ lệ nhưng thg cho 1 con số cực nhỏ, còn lại là set phần trăm. Như v khi resize màn hình sẽ k ảnh hưởng đến nội dung ta set
 
--> Giá trị auto sẽ do browser tự động tính. Nó tính là theo chiều dọc thì lấy 0, theo chiều ngang thì nó lấy hết phần có thể lấy, nếu có nhiều cái cùng auto thì chia đều giá trị cho từng cái 
+-> Giá trị auto sẽ do browser tự động tính. Nó tính là theo chiều dọc thì lấy 0, theo chiều ngang thì nó lấy hết phần có thể lấy, nếu có nhiều cái cùng auto thì chia đều giá trị cho từng cái. Cái này rất hữu dụng nếu muốn kích thước 1 thẻ bị kéo dài theo thẻ cha lấp đầy vào khoảng trống
 
 -> Dùng display
-Pb: block ép thẻ thành block, sang dòng mới và chiếm hết width. Còn inline-block để ép thẻ block k còn width chiếm full dòng nữa, nó được dùng rất nhiều để tùy biến các thẻ như từng khối xếp hình, set margin padding width height thoải mái.
+Pb: block ép thẻ thành block, sang dòng mới và chiếm hết width. Còn inline-block để ép thẻ block k còn width chiếm full dòng nữa, nó được dùng rất nhiều để tùy biến các thẻ như từng khối xếp hình, set margin padding width height thoải mái. Điểm hay là thuộc tính inline-block nếu tràn sẽ tự xuống dòng, dựa vào đó ta cứ biến mọi thẻ thành inline block thì nó tự responsive xuống dòng khi co lại r
 
 Có 1 kiểu đặc biệt là { display: list-item; list-style-position: inside; } để hiển thị thẻ này dạng list. Còn có display: table; có cấu trúc phức tạp
 
@@ -91,6 +97,7 @@ style theo pseudo-element: .test:before { }
 -> Căn giữa: có thể dùng flexbox
 text-align center thì content ra giữa của width của body => khác với text-align justify làm cho chữ trong khung thẳng hơn, chỉ được dùng 1 trong 2 loại
 margin 0 auto là margin 2 bên bằng nhau
+=> refer tới "# Component hay / Tạo giọt nước to"
 
 -> Các hàm css:
 Khi dùng calc có thể tính các kiểu như 50% - 10px là 50% thẻ cha giảm 10px là bnh
@@ -113,6 +120,10 @@ ch: Relative to width of the "0" (zero)
 vmin Relative to 1% của kích thước cửa sổ trình duyệt nhỏ hơn
 vmax Relative to 1% của kích thước cửa sổ trình duyệt lớn hơn
 *%: Có giá trị tương đối so với phần tử cha.
+
+Trap: 
+1 thẻ có height 50% thì sẽ bằng 50% height thẻ cha. Nếu thẻ cha k set height tức tự vừa với thẻ con thì chả có gì nên là 0
+Thế nhưng thẻ có padding-top 50% thì padding nó lại bằng relative theo chiều rộng. VD thẻ width 100px thì padding top 50% sẽ là 50px => thg dùng khi ta muốn padding nó thay đổi theo màn hình responsive chứ kp lúc nào cũng fix cứng, cx tốt để thay thế @media cho padding thay đổi tùy màn hình
 
 -> Emphasis marks dùng cho các ngôn ngữ có thanh âm để biểu hiện tính cao hay trầm của âm tiết
 Có none, open, dot, circle, triangle, seseam, <character> chỉ được là 1 ký tự bất kỳ
@@ -261,6 +272,15 @@ Bth ta dùng display flex thì thẻ có thuộc tính đó trở thành block c
 => Tổng kết các thuộc tính flexbox: display flex
 justify-content, align-items, align-content, flex-wrap, flex-grow, align-self, width
 
+--> flex-basis: set kích thước initial của flexible item. Nếu item lớn hơn thì theo hiển thị full item, nếu tràn ra ngoài flex container vì nó thì thẻ sẽ dài đúng bằng với giới hạn tràn. 
+VD: container 100px, item1 50px, item2 30px. Nếu set width item1 là 1000px thì nó chỉ tới 70 thôi, nếu set width item1 là 10px thì nó mang width là 50px để hiển thị đầy đủ item
+Còn có auto là default value là length của flexible item tức fit-content
+
+--> flex-shrink ngược với flex-grow: truyền trực tiếp số chỉ mức độ item này shrink relative so với các item còn lại. Càng lớn sẽ càng thấy co nhiều. 
+Nếu là 0 thì nó cấm co nhỏ trong flexbox và có thể sẽ mở rộng hơn bth.
+
+Khi dùng kết hợp: flex + flexGrow thì ok nhưng flexBasis + flexGrow có thể k nhận
+
 
 
 # Dùng fontawesome
@@ -310,6 +330,9 @@ Bản có đổi màu: Điểm hay là ta cần tạo ra 1 cục tròn tròn di 
 -> Sun
 -> Tạo darkmode
 -> Full tương tác client server HTML CSS JS
+
+-> Tạo giọt nước to: 
+Để 1 thẻ ra tâm của 1 container => container position relative, thẻ con position absolute bên trong có left 50% và transform translateX(-50%), có thể translate cả trục y nếu height lớn. Tức là ta chỉnh vị trí nó ra tâm xong lùi lại 1 lượng bằng nửa kích thước nó là được. Có thể responsive bằng cách chỉnh width height phụ thuộc vào màn hình và overflow hợp lý
 
 -> Có sẵn: tạo quốc kỳ của mọi quốc gia trên thế giới bằng css
 https://dev.to/j471n/i-made-all-countries-flags-using-html-css-4cnc?fbclid=IwAR2gWGcDZMSjSmpNDmrDIMb35eHImC0Kx3yqMVudwuRtHENBf8I2KSqDOJo#vietnam
@@ -394,6 +417,11 @@ Ký hiệu# dùng cho id thôi
 Với mọi TH nên dùng selector nếu có thể để tránh cái gì cũng đặt tên class mới 
 
 -> Dùng ~ => sibling
+
+Nhanh: space là descendant
+> child
++ sibling => nên thử + or ~
+
 -> Dùng a[href$=".abc" i] { <> }  /  [href*="google.com"]  /  img:not([alt]) 
 
 -> VD
@@ -440,8 +468,6 @@ VD: <p lang="it">Ciao bella!</p>
 
 :not(p) { } => thẻ k là thẻ p thì có css
 
-Phân biệt: :is(<>) thì cho độ ưu tiên cao nhất còn :where(<>) với cú pháp giống hệt cho độ ưu tiên thấp nhất như dùng cho css reset => dùng is để simplify css
-
 div:nth-child(n) => thẻ div là con thứ n => nếu có nhiều thẻ child tương tự nhau thì nên dùng cái này thay vì viết class từng thẻ 1
 
 => tương tự có :nth-last-of-child(n) / :nth-last-of-type(n)
@@ -464,6 +490,10 @@ Vị trí của thẻ before after cũng tự động ở top left và top right
 Dùng :: hay : đều ok or dùng : vì 1 số trình duyệt k hỗ trợ :: 
 
 Dùng & để chơi kiểu selector viết lồng nhau
+
+-> Phân biệt: 
+:is(<>) thì cho độ ưu tiên cao nhất là 100 còn :where(<>) với cú pháp giống hệt cho độ ưu tiên thấp nhất là 0 như dùng cho css reset, còn :is thg dùng cho css reset
+
 
 
 # Dùng bootstrap
@@ -496,6 +526,10 @@ VD: unpkg.com/web3@1.2.4/dist/web3.min.js
 Khi responsive có thể cho font chữ nhỏ lại để cho dễ nhìn or để hiển thị trên 1 hàng
 Khi bố cục chia 3 phần với 2 bên là 2 side bar và ở giữa là body thì trong điện thoại, 3 cột này sẽ thường hiển thị thành 1 cột chính giữa nối tiếp nhau
 
+Kích thước màn hình responsive thì min phải chuẩn cho đến 375-400 cho iPhoneSE. Cần chú ý TH dùng điện thoại thì height > width, máy tính thì width > height. Nhưng khi điện thoại xoay ngang thì height rất nhỏ nên cần chú ý relative height đơn vị là vh dễ bốc cức.
+
+Thực tế: galaxy fold còn bé hơn iPhone SE. Bth tầm 350px là ok nhưng khắt khe hơn thì nhiều lúc phải đảm bảo tới tận 280px kìa
+
 -> Dùng @media trong css3:
 @media not|only mediatype and (media feature) {
     CSS-Code;
@@ -520,6 +554,11 @@ Khi dùng responsive bằng JS thì k lo trình duyệt k hỗ trợ @media này
 -> Dùng @supports (display: grid) and (not (display: inline-grid)){ .. } để check browser có hỗ trợ thuộc tính nào không. Thông thường hỗ trợ 1 giá trị thì cx sẽ hỗ trợ mọi giá trị khác của thuộc tính thôi.
 Ta thường dùng cái này để check nếu k hỗ trợ thì in ra đoạn text "Browser not support this feature!" và display none phần nào sử dụng.
 
+-> K dùng được var() trong @media declaration. Kiểu VD ta muốn kích thước màn hình lưu trong --mobile-size khai báo trong :root{} và dùng @media screen and (max-width: --mobile-size){} => sai ngay
+Vì dù ta khai báo trong :root là root element of toàn bộ HTML doc nhưng media query không chơi với nó. Nên nếu làm responsive lưu vào biến buộc phải dùng cách khác
+
+Thực tế vẫn có các đạt được điều này: với sass thì ok vì bản chất nó phân tích cú pháp và paste vào giá trị correct (k được dùng calc). Với css thuần buộc dùng thêm package npm postcss-media-variables nhưng deprecated lâu rồi => nch là k dùng
+
 
 
 # Tạo Animation
@@ -529,6 +568,9 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties
 transition: [thuộc tính chuyển động] [thời gian chuyển động] [thời gian delay] [kiểu chuyển động];
 VD: transition: all 1s 0.5s ease-in; nhưng thg chỉ dùng kiểu: transition: 2s ease-in-out;
 Tức là có thể chia kiểu: transition: width 2s, height 2s, transform 2s; để kiểu transition thuộc tính gì thì chơi trong bnh giây
+
+Transition k dung được với height nhưng được với max-height
+Có thể tạo dropdown text animation với vói fontSize + padding + opacity
 
 --> @keyframe là 1 thuộc tính hỗ trợ cho animation, nó mạnh hơn transition rất nhiều vì ta tùy ý điều chỉnh animation k nhất thiết phải là element thay đổi trạng thái. keyframe nó định nghĩa hiệu ứng sẽ trông ra sao tại mỗi thời điểm trong dải hiệu ứng. Có thể tạo ra hiệu ứng rất phức tạp, nếu muốn làm trùm css phải làm chủ hết đủ mọi hiệu ứng animation.
 animation: [animation-name] [animation-duration] [animation-timing-function]
@@ -554,6 +596,26 @@ https://viblo.asia/p/tap-tanh-tim-hieu-css-animation-bai-1-transition-4dbZNprL5Y
 
 1 lần keyframe từ 0->100 phải là 1 chu kỳ lặp giống nhau
 
+-> hover button to ra
+C1: hover tăng padding cho button thì button chỉ to phần padding ra còn chữ k đổi, tuy nhiên nó sẽ chiếm tăng space đẩy các thẻ khác
+C2: hover thì scale(1.2) cho nó thì mọi thứ sẽ to ra nhưng trong quá trình đó sẽ dính blurry effect. Nhưng kích thước k ảnh hưởng đến các thẻ khác. Khi transition k quá lớn thì blurry k ảnh hưởng lắm => nên dùng nhất
+C3: hover thì tăng font size của button lên, button to lên nhờ chữ bên trong to lên nhưng k chuẩn, VD lúc to lên có thể giật.
+C4: Ban đầu cho button lớn sẵn đi và scale nó nhỏ lại => hover vào thì mang kích thước ban đầu là to ok. Cách này khá hay nếu gặp TH hover vào kết thúc animation vẫn bị mờ vì cách này làm cho hover vào mới hiện ra đúng kích thước chuẩn k bị mờ còn lúc ban đầu nó bị scale nhỏ lại nên cũng k bị mờ => éo dùng vì nó cũng chiếm kích thước lớn từ lúc bắt đầu
+
+=> Nch là tùy biến tùy tình huống
+
+-> click hiện drop down text:
+Dropdown hiện ra chiếm diện tích đẩy các thẻ khác. K được dùng visibility vì chiếm diện tích khi hidden và display vì k hỗ trợ transition
+Transition k dùng được với height nhưng dùng dược với max-height nên có thể click thì tăng max-height từ 0 tới 1000px or unset
+=> TH nó có backgroundColor mà lại có padding thì max-height là 0 sẽ k có tác dụng mà phải thêm opacity là 0 ban đầu vào và transition dùng với mỗi max-height thôi. Vì nếu có padding sẽ hiện ra vùng màu chỗ padding. padding cũng từ 0 -> unset luôn
+Có thể dùng fontSize là 0 -> fontSize unset hoặc scaleY(0) -> scaleY(1) => tùy cách dùng mà hiệu ứng nó hiện ra sẽ hơi khác nhau. 
+
+=> Chú ý animation tự tạo như này trong React thì VD làm kiểu: style={appear ? {fontSize: "unset"} : {fontSize: 0, padding: 0, opacity: 0}}. Bởi vì khi appear là true thì các style kia tự động k được set nữa chứ k bị lưu giữ vì code js ta k còn gán style đó nữa ở lần render này mà.
+
+-> Tạo drawer menu mobile bằng css thuần: 
+Khi click nút thì phải có 1 bức màn overlay 100vh 100vw được làm tối bằng background đen với opacity. 1 cái drawer đè lên bức màn đó.
+Animation thì tạo cái drawer như bth nhưng transform translateX(-100%), khi click thì translateX(0%) kèm transition là ok.
+
 
 
 # Hack CSS:
@@ -575,7 +637,11 @@ Chỉ cần nhớ 2 thuộc tính contain và cover cho hình ảnh là thườn
 
 Khi dùng background-image chỉ cần chú ý 4 thuộc tính: background-size chỉnh kích thước ảnh, background-image, background-repeat là no-repeat, background-position là vị trí bức ảnh. 
 Thuộc tính background-position nó kiểu vị trí x,y của ảnh trùng với vị trí x,y nào của khung. VD center center hay 0 0 là tâm ảnh trùng tâm khung hay 0,0 của ảnh trùng 0,0 của khung
-Còn có background-origin
+Còn có background-origin.
+VD thg dùng căn tâm ảnh background:
+backgroundPosition: "center, center",
+backgroundSize: "cover",
+backgroundRepeat: "no-repeat",
 
 --> Phân biệt 
 background-origin xác định vị trí của background image theo content. Còn background-clip tương tự nhưng chỉ dùng cho background color. background-clip cũng có 1 option nữa là text sẽ lồng background image vào trong text
@@ -732,7 +798,11 @@ VD: class A height 600px chứa class B có padding-top: 100% thì B có padding
 
 -> opacity làm giảm z-index của thẻ bên trong nó => k dùng opacity với z-index
 
--> position relative fix lỗi zIndex. Khi in các thẻ position absolute đầu tiên để làm background r cho thẻ in sau xuống dưới có thể nó bị lỗi z-index, thêm position absolute vào thẻ bên dưới để nó đè lên absolute bth
+-> Lỗi z-index:
+Bình thường: thẻ có z-index cao hơn đè lên thẻ có z-index thấp hơn. 
+Thẻ A có z-index là 1, thẻ B có z-index là 2 thì thẻ A luôn nằm dưới thẻ B, kể cả thẻ A có children z-index là 100 đi nữa thì tất cả đều dưới thẻ B thôi
+Nhiều case phải specific position thì z-index mới hoạt động, z-index k hoạt động trong position static, kbh dùng thể loại đó. VD: thẻ A có z-index là 1 và specific position relative, thẻ B có z-index là 2 và ta để mặc định thì thẻ A vẫn đè lên thẻ B vì thẻ B éo specific position relative và nhiều browser nó bỏ thuộc tính đó đi thành sai
+Tương tự position sticky hay absolute ta đều phải specific nếu trong cụm đó dùng z-index
 
 -> Các thuộc tính nhận 4 chiều như padding, margin, border nếu khai báo 2 giá trị số sẽ tự hiểu là dọc và ngang nhưng riêng border-spacing thì số đầu lại là ngang, số 2 là dọc. Với border-collapse là hiện border từng cell và border-spacing là khoảng cách các cell trong table.
 
@@ -748,6 +818,8 @@ Khi ta set kiểu hover vào thì thuộc tính gì mang giá trị gì. Nếu t
 VD thẻ ta dùng left 0, hover vào thì thành left 100 thì ok chạy được nhưng nếu ta đổi sang set bằng trục right cơ thì bị lỗi vì khi có cả 2 cái đó nó chỉ lấy left. Để hoạt động thì phải cho hover set right, còn left là auto thì vật sẽ bị dịch chuyển vị trí nhưng nó k dịch chuyển từ từ mà nhảy thẳng luôn vì right từ auto sang 1 số nó k hiểu chạy từ đâu.
 Có thể tận dụng điều này trong animation kiểu nhảy từ trái sang phải mà k quay về rất ảo
 => Phải hiểu bản chất là khi dùng transition ta set giá trị cho cùng 1 thuộc tính đã từng set thì nó sẽ chạy từ từ đến giá trị đó(chỉ đúng với giá trị bd được số). Nếu chưa từng set thì nó coi là set lần đầu tiên và dịch luôn
+
+-> Hover vào A thì hiện ra B, nếu hover tiếp vào phần vừa hiện ra là B thì phần vừa hiện ra vẫn k biến mất dù ta chỉ set hover A hiện B nhưng chú ý phải cho cái hiện ra z-index cao hơn
 
 
 
@@ -808,9 +880,13 @@ VD tương tự: TH thẻ img ở ngay trong thẻ body mà thẻ body và html 
 
 
 # Dùng scroll
-Cơ bản để tạo scroll bar trong 1 box người ta cho các box là inline block xong container dùng white-space: nowrap; overflow-x: auto; là xong. Tức cho container kích thước nhỏ hơn nội dung bên trong và enable scrollbar qua thuộc tính overflow
+Cơ bản để tạo scroll bar trong 1 box người ta cho các box là inline block xong container dùng white-space: nowrap; overflow-x: auto; là xong. Tức cho container kích thước nhỏ hơn nội dung bên trong và enable scrollbar qua thuộc tính overflow.
+Thẻ container k được dùng fit-content mà nên set kích thước responsive phụ thuộc vào màn hình. Set minWidth cho thẻ con bên trong. 
+Thuộc tính auto là khi cần scroll sẽ hiện scroll, k thì thôi. 
+=> refer tới "Projects / Tinkerbellgarden"
 
--> Để nhảy đến 1 vị trí trên trang html: đặt id rồi tại thẻ nào ta dùng href đến đó là được
+-> Để nhảy đến 1 vị trí trên trang html: đặt id rồi tại thẻ nào ta dùng href đến đó từ 1 thẻ mà muốn click là được
+
 scroll-behavior: smooth hay auto để nhảy đến hay trượt đến
 overscoll-behavior: khi 2 scroll lồng nhau, cục bên trong scroll tới đích mà vẫn lăn tiếp chuột ở cục trong thì cục ngoài sẽ scroll, đó là auto mặc định của browser, trên điện thoại cũng sẽ tự động có bounce effect ở đầu và cuối. contain sẽ cản lăn tiếp bên ngoài, none là cản thêm các default effect như bounce trên phone
 
@@ -829,6 +905,16 @@ scroll-margin dùng ở từng item sẽ cho phép cụ thể 1 item nào đư�
 auto: có bounce trên điện thoại, có chaining scroll
 none: không có gì hết
 contain: có bounce, k có chaining scroll
+
+Lỗi kinh hoàng ngồi mấy tiếng:
+K nên dùng fit-content.
+Khi ta code frontend, ta luôn muốn kiểm soát từng thẻ, nắm rõ nó trong lòng bàn tay. Thông thường phân cấp thẻ con nằm trong thẻ cha và vc của ta là chia vị trí các con như thế nào ở trong cha mà thôi. Do đó rất hợp lý khi mà kích thước con luôn nhỏ hơn cha thì ta có thể kiểm soát rất dễ dàng k thể sai được. Khi cần các vị trí đặc biệt thì mới dùng position absolute hay float mà thôi. Nhưng fit-content nó làm kích thước của thẻ cha theo thẻ con. Nên nếu thẻ con kích thước to đùng, nó vô tình làm phình to thẻ cha ra. Mà kích thước con luôn nhỏ hơn cha và k thể điều khiển cha thì mới làm css chuẩn.
+Quy tắc nữa là để kiếm soát kích thước toàn dự án. Khi dùng mọi thuộc tính phải đảm bảo 1 thẻ k phá hỏng kích thước chung. Vd 1 thẻ lồng dưới thẻ container thì phải đảm bảo kích thước nó width 100% full container, k để nó chiếm 1 khoảng trống nào đó k kiểm soát được sẽ rất tệ. Chỉ dùng kích thước fix với 1 số TH kích thước nhỏ.
+VD cách dùng overflow: ta muốn 1 cục nằm trong 1 khối fix kích thước và nếu tràn thì hiện scroll bar cho nó ở trong khối chứ kp cả page thì ta set minWidth cho thẻ bên trong là 1 kích thước ban đầu đủ màn hình r thẻ bao ngoài cho overflow-x: auto; là được. auto là khi cần scroll sẽ hiện scroll, k thì thôi. Scroll bar sẽ tự hiện khi thẻ bên trong có kích thước lớn hơn thẻ bên ngoài và thẻ bên ngoài dùng overflow chơi scroll. Thẻ ngoài chỉ cần set kích thước phụ thuộc vào màn hình là được. 
+Có thể dùng tab element của browser filter Show All để search mọi thuộc tính của thẻ. Thao tác chán chê với browser devtool r mới code. Devtool cũng cho phép ấn CTRL+Z để undo và DELETE để xóa
+
+barchart highchart phải sort tăng dần mốc thời gian
+
 
 
 
@@ -877,9 +963,13 @@ Còn HTML được gọi là ngôn ngữ markup của thế giới web. Là 1 ng
 
 
 
-# Dùng emmet
+# Dùng emmet: 
+Trong VSC hỗ trợ emmet -> CTRL+SHIFT+P -> Emmet Wrap abbreviation -> thêm phím tắt CTRL+K
+
+
 # Dùng revealjs tạo slide
 # SCSS
+# Kinh nghiệm code final
 
 
 
@@ -943,4 +1033,5 @@ CSS: học về SCSS và SASS -> từ đó tạo ứng dụng darkmode dễ hơn
 # SCSS
 # BEM
 #### 
+
 

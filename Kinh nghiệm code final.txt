@@ -1,0 +1,10 @@
+Kinh nghiệm code final:
+
+
+
+# Dùng button:
+Ta thường set width relative sao cho kích thước của nó vừa mắt với ta.
+VD: có 2 button muốn chiếm full container ta dùng width 45%. Khi co màn hình lại, button cũng sẽ tự co theo nhưng nó k bh co quá mức làm ẩn chữ, có thể set thêm minWidth để đảm bảo nó luôn luôn hiện chuẩn
+
+
+

@@ -126,6 +126,8 @@ Có thể dùng: ở tag html; code js là element.onclick = () => {<>}; element
 Khi 1 action kích hoạt thực hiện nhiều event listener thì capture và bubbling là 2 thứ tự thực hiện khác nhau. Nếu có cả capture và bubbling thì mọi capture event sẽ thực hiện trước rồi mới đến bubbling
 -> refer tới "# Dùng sự kiện JS / Dùng useCapture" của React
 
+-> onmouseenter khi hover vào element(dùng thay thế :hover tạo animation cho React được); onmouseover cũng tương tự nhưng điểm khác là onmouseenter k bubble bắn ra again khi mouse trỏ vào child element, onmouseover thì có.
+
 
 
 # Mảng và object và hàm
@@ -142,7 +144,6 @@ cast tất cả phần tử của mảng về 1 kiểu dữ liệu nhanh nhất 
 Hàm Array.from(mảng, function); giúp tạo array cực mạnh => nên dùng mọi lúc thế hoàn toàn cách ta tạo array bth là k chuẩn
 
 -> Các hàm thg dùng:
-flat dùng để xử lý mảng lồng mảng
 includes
 slice
 
@@ -165,6 +166,18 @@ Lấy phần tử của mảng thì theo thứ tự, của object thì trùng t�
 Lấy rest parameter truyền vào function với ... or lấy các thuộc tính của object với {field1, field2}
 
 Cách khác lấy params của function ít dùng là dùng for(var x of arguments) {<>}
+
+-> flat 1 mảng:
+--> Hàm flat có sẵn của js
+--> Dùng recursive thuần: mảng có phần tử bth thì add vào mảng, còn phần từ là array thì gọi đệ quy. Có thể dùng với hàm reduce 
+--> Dùng spread operator + concat:
+Hàm concat của 1 array nếu nhận về 1 số sẽ thêm số vào mảng, nếu nhận về 1 array sẽ nối 2 array lại với nhau
+VD: [].concat(1,2,[3,4]); sẽ thành [1,2,3,4] => lợi dụng điều này ta gọi liên tục [].concat(...arr); để tách dần từng lớp của array.
+
+-> Shuffle 1 array
+Biến const array có thể thay đổi k vấn đề gì vì nó chỉ cản reference đổi chứ giá trị bên trong đổi thoải mái. Nhưng nếu làm việc với React kiểu data nhận về từ redux là const array và show ra màn hình bản shuffle của nó. Do lấy từ redux k được đổi trong component nên phải dùng lodash cloneDeep nó trước r mới shuffle
+C1: sort với 0.5 - Math.random() k hoàn toàn random nhưng có thể dùng nếu k yêu cầu khắt khe
+C2: Dùng Fisher-Yates algorith hoàn toàn random và implement cũng dễ
 
 
 
@@ -231,8 +244,18 @@ Trap: Khi bao 1 lệnh gọi promise bằng try catch mà trong promise ta cũng
 => refer tới "NodeJS / NodeJS Advance / Test server"
 
 -> Dùng các hàm của promise như promise.all([<>])
+Promise all trả về mảng kết quả đúng thứ tự với mảng input truyền vào
 
 -> Dùng async await: có thể kết hợp với promise thì k cần .then .catch nữa => phiên bản mới nên dùng async await mà bỏ hẳn then catch luôn
+
+-> Dùng promise với map: 2 chiều
+Tạo hàm sleep
+
+Trong Promise.all() là 1 mảng chứa các lời gọi thực hiện hàm. Dùng data.map() cũng là gọi thực hiện hàm với params là các phần tử trong a rồi chứ kp chỉ khai báo
+
+-> Promise với function lồng function () => () => {}
+
+-> Mảng Promise race tìm ra cái đầu tiên trả về true là lấy
 
 
 
@@ -301,6 +324,24 @@ Nên mở debug ra xem từng class khi dùng. VD muốn dùng 1 thuộc tính c
 -> Biến/hàm static trong class
 -> Tạo singleton class
 
+-> Phân biệt 2 cách viết hướng đối tượng
+function Animal(){
+  this.name= "a";
+)
+Animal.prototype.test = () => {
+  console.log("test");
+}
+Tương đương với:
+class Animal {
+  constructor(){
+    this.name = "a";
+  }
+  test = () => {
+    console.log("test");
+  }
+}
+=> Bh người ta thg dùng class cho đỡ sai
+
 
 
 # Dùng yield
@@ -317,7 +358,7 @@ Ta có thể dùng vòng for để duyệt yield function sẽ chạy liên ti�
 
 # Export import
 Chỉ được export default 1 thứ trong 1 file
-Có thể dynamic import
+Có thể dynamic import => refer tới "React Final / Cách tối ưu hóa 1 ứng dụng React"
 
 
 
@@ -369,6 +410,9 @@ fetch(url, {
 
 Các response.type: basic nếu ứng dụng gửi request cho server cùng nhà. K có giới hạn vc xem thông tin trên response; cors: tức server và client cách xa nhau, lúc đó ta bị giới hạn, chỉ biết đc ít thông tin hơn opaque: cho các request ở xa nhưng lại k nhận cors, k xem đc dữ liệu, k xem đc status luôn. TH này xảy ra khi ng dùng server chủ động cấm cors chứ bth vẫn truy cập đc trả về cors, ta có thể truy cập vào các thành phần headers: Cache-Control, Content-Language, Content-Type, Expires, Last-Modified, Pragma với headers.get("<>")
 
+-> URL test API: có hàm fetch, muốn có 1 server API để test
+https://stackoverflow.com/questions/5725430/http-test-server-accepting-get-post-requests
+
 
 
 # Upload multiple file lên server
@@ -386,6 +430,7 @@ fetch('https://example.com/posts', {
 .then(response => response.json())
 .then(response => console.log('Success:', JSON.stringify(response))) // khi nó trả lại dữ liệu dạng string mà ta muốn json hóa
 .catch(error => console.error('Error:', error));
+=> refer tới "Projects / Tinkerbellgarden / Test"
 
 
 
@@ -413,7 +458,12 @@ Bất đồng bộ tức là vẫn hoạt động các chức năng khác đến
 
 
 # Thao tác với Date
-Date.now() tương đương new Date.getTime() trả ra milisecond từ epoch time => có thể dùng nó làm id nếu k quá khắt khe về id, VD dùng nó thêm prefix id cho 1 cái khác chẳng hạn. Vì vẫn có xs trùng khi dùng milisecond
+Date.now() tương đương new Date.getTime() trả ra milisecond từ epoch time => có thể dùng nó làm id nếu k quá khắt khe về id, VD dùng nó thêm prefix id cho 1 cái khác chẳng hạn. Vì vẫn có xs trùng khi dùng milisecond nếu quá nhiều người request id cùng 1 lúc
+
+Nên nhớ cái new Date(null) sẽ ra năm 1970 còn new Date() sẽ ra date hiện tại
+
+Khởi tạo new Date(2022, 6, 20) -> thực chất lại là tháng 5 vì nó cộng tháng lên 1 đó.
+Khi khởi tạo 1 biến Date như v tức là 0h sáng của ngày hôm đó. Khi khởi tạo biến Date cho - 10 chẳng hạn thì nó giảm 10 giây nhưng k còn là kiểu date nữa
 
 
 

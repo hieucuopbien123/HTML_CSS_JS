@@ -271,6 +271,118 @@
         <circle class="circle" cx='50' cy='50' r='40' stroke='green' stroke-width='4' fill='yellow' />
     </svg>
 
-</body>
+    <!-- # Basic HTML / Các thẻ input -->
+    <style>
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none !important;
+            /* opacity: 1 !important;
+            width: 50px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            background-color: blue !important;
+            border: 2.5px solid red !important; */
+        }
+    </style>
+    <input type="number" value="1" />
 
+    <!-- # Tạo animation / hover button to ra -->
+    <style>
+        .buttonhover:hover{
+            padding: 20px 60px;
+            /* transition: 1s; */
+            transition: transform, padding 1s; /* Chỉ 1 animation chỉnh padding */
+        }
+        .buttonhover2:hover{
+            transform: scale(5);
+            transition: 1s;
+        }
+        .buttonhover3:hover{
+            font-size: 20px;
+            transform: scale(5);
+            transition: 1s;
+        }
+        .buttonhover4 {
+            font-size: 40px;
+            transform: scale(0.5);
+            transform-origin: 0% 100%;
+        }
+        .buttonhover4:hover{
+            transform: scale(1);
+            transition: 1s;
+            transform-origin: 0% 100%;
+        }
+    </style>
+    <button class="buttonhover">ABC</button>
+    <button class="buttonhover2">ABC</button>
+    <button class="buttonhover4">ABC</button>
+    <button class="buttonhover3">ABC</button>
+
+    <!-- HTML_CSS_JS Final -->
+    <!-- Responsive mà k cần @media -->
+    <style>
+        .container {
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(400px, 1fr));
+            gap:10px;
+        }
+        .container > div {
+            height:100px;
+            background:red;
+        }
+    </style>
+    <div class="container">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <br/>
+
+    <!-- Responsive k cần @media mạnh hơn -->
+    <style>
+        .container1 {
+            display: flex;
+            flex-wrap:wrap; /* this */
+            gap:10px;
+        }
+        .container1 > div {
+            height: 100px;
+            flex: max(400px, 100%/4 - 0.1%); /* and this */
+            background: red;
+        }
+    </style>
+    <div class="container1">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <br/>
+    <style>
+        .container2 {
+            --w:400px;
+            --n:3;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(clamp(100%/(var(--n) + 1) + 0.1%,var(--w),100%),1fr)); /*this */
+            gap:10px;
+        }
+        .container2 > div {
+            height:100px;
+            background:red;
+        }
+    </style>
+    <div class="container2">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+</body>
 </html>

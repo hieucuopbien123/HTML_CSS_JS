@@ -72,6 +72,8 @@ Cung giá trị cho 1 thuộc tính bằng return
 
 
 # Dùng sass trong React
+SASS được thiết kế và viết bởi các lập trình viên Ruby, sử dụng cú pháp giống Ruby. package node-sass giúp convert code sass thành css dùng cho dự án react
+
 -> Setup: npm i node-sass -> import file scss dùng trực tiếp như bth thôi
 
 -> Cách tổ chức dự án dùng scsss
