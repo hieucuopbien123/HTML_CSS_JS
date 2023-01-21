@@ -686,6 +686,21 @@ Trong svg element có thẻ mask có trường id là star chẳng hạn. Có 2 
 mask: url(masks.svg#star) 0 0/50px 50px no-repeat; => đặt mask tại vị trí 0 0 từ top left và width height mask là 50px 50px
 mask: url(masks.svg#star) left / 16px repeat-y; => element là mask ở phía bên trái với width 16px. Cái mask position phải xác định 2 giá trị như left top, mặc định nếu chỉ set 1 giá trị thì giá trị còn lại sẽ là center
 
+-> Image placeholder
+Khi hiển thị ảnh có 3 TH: url ảnh chuẩn đã được load thì hiển thị ảnh bth, url ảnh chuẩn nhưng chưa được load thì ta muốn có 1 image placeholder hiển thị chờ cho đến khi ảnh đươc load, url kp là ảnh thì hiển thị image placeholder báo ảnh bị sai. 
+Cần đảm bảo khi ảnh load sẽ k đẩy các phần khác của giao diện đi mà phải giữ cố định, hiển thị đè lên img placeholder thôi
+
+Thông thường ta sẽ có 1 bức ảnh mặc định và nếu trường ảnh là rỗng thì dùng ảnh mặc định đó
+
+--> Cách dùng
+Bth chỉ cần dùng thẻ img có width và height cố định bằng kích thước ảnh, nếu k rõ thì dùng minWidth minHeight để đảm bảo luôn có placeholder -> dùng background color xám cho thẻ img để khi ảnh chưa được load sẽ hiển thị 1 màu xám -> dùng border radius cho img và thẻ div bao ngoài img bằng nhau, thẻ div ngoài có thể overflow hidden là xong.
+=> Là cách nên dùng, nhưng nếu ảnh bị lỗi sẽ hiển thị hình ảnh lỗi khá xấu, cách này k thể hiển thị 1 bức ảnh mặc định được mà chỉ được 1 màu
+=> Có thể dùng bgColor cho thẻ div bao ngoài cũng được. bgColor của thẻ img sẽ được sử dụng ở bên dưới, sau khi có ảnh sẽ đè lên bgColor đó.
+
+Cách khác dùng onLoad cho thẻ img để biết ảnh k bị lỗi mới hiển thị còn lỗi sẽ hiển thị bức ảnh mặc định. VD: onError(e => e.target.value = ảnhtest) nhưng trong nextjs nó bị lỗi k dùng được 
+Cách khác là dùng thẻ object, thẻ img chứa ảnh mặc định là thẻ con của thẻ object sẽ hiện ra khi ảnh bị lỗi => Cách này hoàn hảo nhất và nó cũng dùng để nhúng nhiều loại media chứ k chỉ ảnh nhưng dùng thẻ object kp chuyên cho ảnh nên ít dùng
+
+--> Có thể dùng Skeleton animation or ảnh loading để làm image placeholder nhưng nó nên thật nhẹ và có sẵn là static để hiển thị nhanh
 
 
 
