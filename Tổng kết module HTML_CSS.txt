@@ -148,7 +148,7 @@ order: có nhiều item trong 1 container flex, mặc định cái nào render t
 
 color-scheme: light=normal/dark có tác dụng hiển thị như mặc định nhưng trắng đen ngược nhau. Nó chỉ có tác dụng với vài component như textarea hay thẻ div nhưng bị overflow. Đặc biệt nếu set nó cho :root thì mọi component bên trong đều bị đổi ngược trắng đen so với mặc định.
 
-will-chaing: auto, scroll-position, contents, transform, opacity, left, top, width, height. Thuộc tính này đưa ra gợi ý rằng 1 element sẽ thay đổi như nào cho browser. Ta thường dùng nó khi sự thay đổi của element gây ra việc lag or k như ý. Cái này dùng như 1 biên pháp cuối cùng và k nên sử dụng ở nhiều component vì browser sẽ cố xử lý để optimize performance khi component thay đổi theo cách đó, tức browser phải xử lý rất expensive. VD như ta sử dụng trong react-grid-layout. Refer tới "react-grid-layout"
+will-change: auto, scroll-position, contents, transform, opacity, left, top, width, height. Thuộc tính này đưa ra gợi ý rằng 1 element sẽ thay đổi như nào cho browser. VD khi hover thì thêm filter thì ta dùng will-change: filter để browser biết trước nó sẽ bị filter khi hover để optimze. Ta thường dùng nó khi sự thay đổi của element gây ra việc lag or k như ý. Cái này dùng như 1 biên pháp cuối cùng và k nên sử dụng ở nhiều component vì browser sẽ cố xử lý để optimize performance khi component thay đổi theo cách đó, tức browser phải xử lý rất expensive. VD như ta sử dụng trong react-grid-layout. Refer tới "react-grid-layout"
 
 Các property của column: các thao tác với column khiến cho 1 thẻ được chia làm nhiều phần. Cái này khá hay thay vì cứ phải dùng border để chia thì cách này mới
 
@@ -547,6 +547,8 @@ Cái prefers-color-scheme này thực ra là khi user dùng darkmode trong phầ
 Dùng light nếu ta k set theme gì cả or dùng light mode. Còn dark chỉ khi dùng dark mode. 
 => Thực tế việc làm điều này là không cần thiết
 
+--> Có @media (prefers-reduced-motion) {} là khi user setting cho web là giảm thiểu animation thì sẽ chạy vào đây. Setting này của browser để web ít animation cho đỡ lag chẳng hạn.
+
 -> Có thể dùng với JS: viết sẵn class ra rồi check resize event thì gán class nào
 Với TH quá nhiều style giữa 2 loại có thể tạo 2 file riêng để dùng và xử lý 2 sự kiện onLoad và resize
 Khi dùng responsive bằng JS thì k lo trình duyệt k hỗ trợ @media này nọ. 
@@ -712,6 +714,11 @@ CSS Hack tương tự linear, khi đó phải tách các trường dấu phẩy:
 -> Các cách lấy màu: rgba(255,0,0,0.5); rgb(255,0,0); hsl(0, 1005, 50%), hsla(0,100%,10%,0.3); #ffffff; dùng tên trực tiếp red, yellow
 hsl thì hue có giá trị từ 0 đến 360, 0 và 360 cùng là đỏ.
 Dùng color name k khuyến khích vì kp dạng chuẩn của color và khó quản lý
+
+-> 1 số màu có sẵn của hệ thống => ít dùng
+-webkit-focus-ring-color /* Webkit, Safari */
+-moz-mac-focusring /* Firefox */
+activeborder /* Blink, Chrome */ 
 
 
 
