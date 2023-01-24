@@ -384,5 +384,42 @@
         <div></div>
     </div>
 
+
+    <!-- Tính năng readmore bằng CSS only -->
+    <style>
+        input#inputHiddenContent3, #inputShownContent3, span#spanHiddenContent3 { display: none; }
+        input#inputShownContent3:checked ~ span#spanHiddenContent3 { display: block; }
+        input#inputHiddenContent3:checked ~ span#spanHiddenContent3 { display: none; }
+        input#inputShownContent3:checked ~ #myReadMore label { display: none; }
+    </style>
+    <input type=radio id="inputShownContent3" name="group3" />
+    <span id="myReadMore">
+        <h4>First part of the static content</h4>
+        <label for="inputShownContent3">Read more....</label>
+    </span>
+    <span id="spanHiddenContent3">
+        <p>	toggle the second part of the story. </p>
+        <label for="inputHiddenContent3">Read less....</label>
+    </span>
+    <input type=radio id="inputHiddenContent3" name="group3" />
+
+    
+    <!-- Disable auto focus của select option -->
+    <select>
+        <option selected disabled>Choose an item</option>
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="vw">VW</option>
+        <option value="audi">Audi</option>
+    </select>
+
+    <select>
+        <option hidden>Choose an item</option>
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="vw">VW</option>
+        <option value="audi">Audi</option>
+    </select>
+
 </body>
 </html>

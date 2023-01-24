@@ -115,7 +115,7 @@ var var3Test4 = JSON.parse(JSON.stringify(var3));//copy, có thể k ra đúng o
 var var3Test5 = Object.defineProperties({}, Object.getOwnPropertyDescriptors(var3));//copy rất chặt, k cần thiết
 var var3Test2 = Object.assign({}, var3);//copy
 
-var var3Test7 = Object.assign(var3, {name: "Hello"});//gán địa chỉ, đổi trực tiếp
+var var3Test7 = Object.assign(var3, {name: "Hello"});//gán địa chỉ, đổi cả var3 nên var3 === var3Test7
 
 var var3Test6 = Object.create(var3);//var3 trở thành thuộc tính prototype của var3Test6
 var var3Test8 = Object.getOwnPropertyNames(var3);//copy nhưng chỉ lấy mỗi key
@@ -126,6 +126,7 @@ var {name, ...other} = var3;//copy nhưng dùng cùng tên, nếu có biến tê
 
 // Cách copy giá trị hay địa chỉ của mảng
 var var2Test2 = [...var2, 4];//copy, nên dùng nhất => k dung với multidimension array. Nếu thế sẽ phải dùng for
+// Cách này tốt hơn là dùng .push, kể cả khi concat 2 mảng [...a, ...b]
 // Refer tới ### Module JS trong React
 
 var [a,, c] = var2;//copy
@@ -161,3 +162,42 @@ var arrTest = arr.splice(2,2);//2 tham số or 4 tham số đều được. Cắ
 console.log(arr);
 console.log(arrTest);
 
+
+// # Immutability code: Code kiểu luôn dùng const
+// VD đổi thuộc tính:
+const a = {name: "foo"}; 
+a.name = "doi duoc";
+console.log(a); 
+
+// VD thêm thuộc tính: 
+const b = Object.assign({}, a, {name: "bar", age: 1}, {id: 9}); // { name: 'bar', age: 1, id: 9 }
+// Dùng spread ok nhưng k hỗ trợ trên mọi trình duyệt nên phải thêm Babel mới được
+const d = { ...a, name: 'bar', age: 1, id: 9 }
+console.log(d) // { name: 'bar', age: 1, id: 9 }
+console.log(d === a) // false
+
+
+// Xóa phần tử mảng
+const tete = [0, 1, 2, 3, 4]
+
+// Xóa phần tử ở đầu mảng
+// Không nên: tete.shift() vì đổi trực tiếp
+const te1 = tete.filter((_, index) => index !== 0) // [1, 2, 3, 4] 😃
+
+// Xóa phần tử ở cuối mảng
+// Không nên: tete.pop()
+const te2 = tete.filter((_, index, arr) => index != arr.length - 1) // [0, 1, 2, 3] 😃
+
+// Xóa phần tử ở vị trí bất kỳ
+// Không nên: tete.splice(3, 1)
+const te3 = tete.filter((_, index) => index !== 3) // [0, 1, 2, 4] 😃
+
+// Thay đổi dữ liệu mảng thì dùng map
+// sort cũng phải copy
+const e = [
+    { id: 1, name: 'Foo' },
+    { id: 2, name: 'Bar' },
+    { id: 3, name: 'Baz' },
+]
+const f = [...a].sort((x, y) => y.id - x.id);
+const g = [...a].reverse();

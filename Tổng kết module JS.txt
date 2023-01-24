@@ -485,6 +485,17 @@ Device: copy text vào clipboard, detect phím capslock có bật không, lấy 
 
 
 
+# Dùng debounce throttle
+-> ref tới "React / # Dùng debounce throttle"
+
+
+
+# Immutability code:
+Luôn dùng const khi khai báo dữ liệu. Nếu là mảng và object thì đổi thuộc tính được, nếu cần thêm thuộc tính thì lại tạo biến const mới. 
+Mọi lúc dùng let thì hầu hết đều có cách thay thế bằng const. Khi thay đổi mảng hay object luôn để ý có thể copy ra mảng object mới không
+
+
+
 # Other
 -> Trong js có nhiều kiểu quái đản, ta có thể gõ trực tiếp vào browser kiểm chứng:
 {} + [] và [] + {} cho kết quả khác nhau
