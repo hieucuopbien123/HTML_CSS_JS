@@ -248,7 +248,9 @@ place-content: end space-between; => là kết hợp của align-content end và
 
 => 2 thuộc tính này để dùng nhanh khi set cho grid. Nên set vì grid vị trí ảo lắm
 
-Tương tự có: place-self tắt của align-self và justify-self => chỉ dùng ở thẻ con để khi thẻ con nhỏ hơn cha thì nó hiện vị trí nào 
+Tương tự có: place-self tắt của align-self và justify-self => chỉ dùng ở thẻ con để khi thẻ con nhỏ hơn cha thì nó hiện vị trí nào
+
+flex-flow: row-reverse wrap; => viết tắt của flex-direction và flex-wrap
 
 
 
@@ -699,10 +701,25 @@ Bth chỉ cần dùng thẻ img có width và height cố định bằng kích t
 => Là cách nên dùng, nhưng nếu ảnh bị lỗi sẽ hiển thị hình ảnh lỗi khá xấu, cách này k thể hiển thị 1 bức ảnh mặc định được mà chỉ được 1 màu
 => Có thể dùng bgColor cho thẻ div bao ngoài cũng được. bgColor của thẻ img sẽ được sử dụng ở bên dưới, sau khi có ảnh sẽ đè lên bgColor đó.
 
-Cách khác dùng onLoad cho thẻ img để biết ảnh k bị lỗi mới hiển thị còn lỗi sẽ hiển thị bức ảnh mặc định. VD: onError(e => e.target.value = ảnhtest) nhưng trong nextjs nó bị lỗi k dùng được 
+Cách khác dùng onLoad cho thẻ img để biết ảnh k bị lỗi mới hiển thị còn lỗi sẽ hiển thị bức ảnh mặc định. VD: onError(e => { e.target.value = ảnhtest; e.onerror = null; }) nhưng trong nextjs nó bị lỗi k dùng được 
 Cách khác là dùng thẻ object, thẻ img chứa ảnh mặc định là thẻ con của thẻ object sẽ hiện ra khi ảnh bị lỗi => Cách này hoàn hảo nhất và nó cũng dùng để nhúng nhiều loại media chứ k chỉ ảnh nhưng dùng thẻ object kp chuyên cho ảnh nên ít dùng
 
 --> Có thể dùng Skeleton animation or ảnh loading để làm image placeholder nhưng nó nên thật nhẹ và có sẵn là static để hiển thị nhanh
+
+-> Lazy loading ảnh
+Thuộc tính loading của thẻ iframe và img mặc định là eager là load ngay lập tức khi vào web. Option khác là lazy.
+Khi dùng loading="lazy" cho ảnh thì ảnh chỉ thực sự được load khi ta scroll tới 1 khoảng gần gần bức ảnh đó => rất phù hợp với các bức ảnh lớn chiếm nhiều băng thông, thư viện hiển thị nhiều ảnh, cải thiện tốc độ load trang và chiếm ít băng thông hơn
+=> Thuộc tính này là mặc định của html mà k cần config gì thêm. Vẫn có thể dùng backgroundColor cho thẻ img hay bao nó bằng 1 thẻ bên ngoài làm image placeholder bình thường
+Thg dùng kèm với onLoad và onError nếu được để khi chưa load thì hiển thị mặc định gì, còn lỗi thì hiển thị ảnh gì kết hợp với useState của React để gán biến lưu ảnh
+
+--> React: Tuy nhiên thuộc tính này k hỗ trợ mọi browser nên thư viện react-lazy-load-image-component sẽ lo điều đó với mọi browser
+Thuộc tính PlaceholderSrc của LazyLoadImage còn nhận 1 bức ảnh kích thước nhỏ để hiển thị ra trước khi bức ảnh lớn được load. Ta có thể giảm độ phân giải ảnh bằng các công cụ chỉnh sửa để thế vào ok, thêm effect="blur" để làm mờ ảnh placeholder được => bất cứ cách nào cần hiển thị ảnh mờ đều phải biết trước ảnh là gì để tạo 1 placeholder size nhỏ cho load trước.
+
+Thư viện khác: react-progressive-graceful-image => rất phù hợp dùng được thay thế cho tag object của html hiển thị ảnh placeholder, nếu ảnh lỗi thì chỉ hiển thị placeholder mặc định
+=> ref tới "Code React / ReactJS Advance/ Final"
+
+--> Browser -> tab network -> No throttling -> chọn slow 3G thì tốc độ load sẽ chậm hơn sẽ xem được trải nghiệm khi mạng lag, disble cache để xem được chuẩn
+Chỉ số Cumulative Layout Shift (CLS): là chỉ số đo khi các thành phần trong web được load async với tốc độ khác nhau khi vào thì bố cục sẽ bị dịch chuyển nhiều hay ít. Bố cục càng tĩnh thì trải nghiệm càng mượt, nếu không thì nên có thêm animation cho nó cho chuẩn
 
 
 
@@ -996,6 +1013,8 @@ Trong VSC hỗ trợ emmet -> CTRL+SHIFT+P -> Emmet Wrap abbreviation -> thêm p
 
 
 # Other:
+-> caniuse.com là trang web check các tính năng của html, css hỗ trợ những browser nào
+
 -> Browser cũng là 1 ứng dụng có khả năng đọc file như file html bình thường nhưng kp tất cả mọi thứ vì nó k cho các tệp tin JS native hoạt động.
 Do đó để chạy các phần phức tạp của file, cần 1 server chạy trên 1 cổng sau đó ta nhét các file vào server. Đa số server web đều tự động chạy file index.html khi vào, nếu k có file đó thì có thể xử lý qua các layer trung gian rằng báo lỗi not found 404 or tự động hiển thị cây thư mục để xem các file khác có trong server. 
 LiveServer là local http server tạo bằng extension của VSC trên cổng 5500. Thg các server đều cho custom cổng bằng file config.

@@ -421,5 +421,21 @@
         <option value="audi">Audi</option>
     </select>
 
+    <!-- Dùng direction và resize có thể khiến mọi thứ resizeable -->
+    <style>
+        div.resizeable{
+            overflow: hidden;
+            resize: both;
+            background-color: red;
+            display: inline-block;
+            direction: ltr;
+        }
+    </style>
+    <div class="resizeable">
+        Hello
+    </div>
+    <span>World</span>
+
+    <!--  -->
 </body>
 </html>
