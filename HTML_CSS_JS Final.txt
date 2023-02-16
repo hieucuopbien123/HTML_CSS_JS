@@ -120,6 +120,7 @@ Hàm clamp hiểu là v nhưng thực ra k ổn. Nếu hiểu như trên thì n�
 -> Pattern string find 1 string khác: 
 str1.trim().replaceAll(",","").replaceAll(".","").toLowerCase().includes(str2.trim().replaceAll(",","").replaceAll(".","").toLowerCase());
 
+Thay vì dùng str1 + str2, ta dùng `${str1}${str2}`
 
 
 -> Dùng button:

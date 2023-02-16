@@ -564,6 +564,8 @@ Thực tế vẫn có các đạt được điều này: với sass thì ok vì 
 
 
 # Tạo Animation
+-> Có sẵn: các hiệu ứng cơ bản cho text, input, loading bằng html css thuần => https://cssfx.netlify.app/
+
 -> Phân biệt transition, animation, keyframe:
 --> transition là thuộc tính sử dụng khi element thay đổi trạng thái. VD từ bth sang hover chẳng hạn thì quá trình này biến đổi từ từ. Kp mọi thuộc tính đều dùng được transition VD background-image vì k thể cho 2 hình ảnh chuyển dần qua nhau được vì nó liên quan đến xử lý hình ảnh video chứ k còn là css nữa. Các thuộc tính dùng được thường là các thuộc tính có thể biểu diễn bởi số or màu. Xem tại:
 https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties
@@ -996,6 +998,8 @@ Trong VSC hỗ trợ emmet -> CTRL+SHIFT+P -> Emmet Wrap abbreviation -> thêm p
 
 
 # Other:
+-> Url tổng hợp spinner dạng svg: https://github.com/n3r4zzurr0/svg-spinners
+
 -> Browser cũng là 1 ứng dụng có khả năng đọc file như file html bình thường nhưng kp tất cả mọi thứ vì nó k cho các tệp tin JS native hoạt động.
 Do đó để chạy các phần phức tạp của file, cần 1 server chạy trên 1 cổng sau đó ta nhét các file vào server. Đa số server web đều tự động chạy file index.html khi vào, nếu k có file đó thì có thể xử lý qua các layer trung gian rằng báo lỗi not found 404 or tự động hiển thị cây thư mục để xem các file khác có trong server. 
 LiveServer là local http server tạo bằng extension của VSC trên cổng 5500. Thg các server đều cho custom cổng bằng file config.
