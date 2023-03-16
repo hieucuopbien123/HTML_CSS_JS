@@ -145,3 +145,7 @@ VD jQuery có animation chậm hơn CSS vì nó thiết kế ngay từ đầu k 
 Giá trị mặc định chọn item đầu tiên thì ta chỉ cần check rồi cho là rỗng là được
 
 
+-> Dùng direction và resize
+
+-> Thực hành / SpecialImage: thao tác với image pro hơn
+
