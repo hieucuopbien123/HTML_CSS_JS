@@ -435,5 +435,46 @@
         Hello
     </div>
     <span>World</span>
+
+    <!-- # Basic / Dùng table -->
+    <style>
+        /* Có nhiều kiểu style border đặc biệt nên check trước khi tự custom */
+        th, td{
+            border-style: inset;
+        }
+    </style>
+    <table border="10" 
+    bordercolor="green" 
+    width="50%" align="center" cellpadding="8px" cellspacing="10px">
+        <caption>Hello</caption>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+        <tr>
+            <td align="right">John Smith</td>
+            <td>smith@example.org</td>
+        </tr>
+        <tr>
+            <td colspan="2">John Smith</td>
+        </tr>
+        <tr>
+            <td rowspan="2">John Smith</td>
+            <td >John Smith</td>
+        </tr>
+        <tr>
+            <td>Data</td>
+        </tr>
+    </table>
+
+    <style>
+        p:first-letter{
+            color: red;
+        }
+    </style>
+    <p style="width: 100px; text-indent: -20px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente, earum!</p>
+    <dialog open>Hello</dialog>
+
+    
 </body>
 </html>

@@ -141,11 +141,34 @@ VD jQuery có animation chậm hơn CSS vì nó thiết kế ngay từ đầu k 
 
 
 
+-> Trang web tổng hợp các trang web đẹp design sẵn: 
+https://screenlane.com/search/?q=header
+https://pagecollective.com/page/monspark-e49/
+
+
+
 -> Disable auto focus của select option: Bug này xảy ra ngay cả khi dùng các thư viện UI khác
 Giá trị mặc định chọn item đầu tiên thì ta chỉ cần check rồi cho là rỗng là được
-
 
 -> Dùng direction và resize
 
 -> Thực hành / SpecialImage: thao tác với image pro hơn
+
+-> Thẻ a có thể dùng làm link or anchor:
+Dùng làm link thì ref url đến 1 resource VD website khác. 
+Dùng làm anchor thì đặt 1 id ở vị trí khác rồi thẻ <a href="#<tên id cần nhảy tới>"> => có thể dùng attribute name thay cho id
+Thẻ dialog k chiếm diện tích
+
+-> text-indent
+<dialog>
+
+-> animation text bằng background image và background-clip
+
+
+
+-> bug param url:
+GET method trong url khi các trường chứa các ký tự đặc biệt reserved character sẽ gây lỗi. Vd: dấu cộng + mà dùng làm param value thì url sẽ encode sai thành khoảng trắng. 
+Để fix có thể dùng thành method POST truyền vào body. Nếu dùng GET thì trước khi gửi phải tự percent-encoded trước.
+Các reserved keyword: + ? & / : ; , = # %
+
 

@@ -1,4 +1,6 @@
 HTML_CSS:
+Hypertext: text ref hyperlink tới text khác mà reader có thể access thông qua mouse click or key press. 
+VD code html viết là hypertext, văn bản thực nhìn thấy trên trang web chính là text mà reader access
 
 
 
@@ -9,6 +11,8 @@ Các thẻ chung thì k cần dấu chấm, các thẻ tự đặt tên thì có
 Chú ý text-align ngoài center còn có right, left nên dùng khi cần chữ ở sang 2 bên
 
 Thẻ br xuống 1 dòng k kiểm soát đc chiều height. Nó dùng cho html, còn thẻ <br/> dùng cho XHTML mở rộng hơn mà thôi
+
+Các thẻ heading h1 h2 ... chỉ nên dùng cho heading chứ k chủ động dùng để tạo big text vì search engine dùng heading để đánh index cho nội dung page
 
 -> Dùng SVG element: Dùng rất ez, bộ thuộc tính của nó rất lớn và phức tạp, là 1 mảng riêng. Thg thì vẽ r generate ra svg chứ đừng code thuần svg.
 Dùng fill trong svg chỉnh màu chung của cả ảnh
@@ -22,6 +26,7 @@ Thẻ inline k thể xét margin theo chiều dọc, padding theo chiều dọc 
 -> Các thẻ input 
 --> input text default tự động là nếu width nó lớn hơn thẻ bao nó thì tự bị ẩn phần sau đi, kiểu overflow có thể đi ngang ấy chứ k sợ hiện tràn ra
 --> input radio thì check r sẽ k thể uncheck cái đó. Nếu muốn có 1 group input radio chỉ cho chọn 1 thì phải đặt chung trường name với nhau
+--> input password chỉ hiển thị thôi chú gửi về server vẫn y hệt mk gốc
 
 --> Thẻ input dùng type number có thể custom cái nút tăng giảm spin button. Chỉ cần trỏ vào class của nó trong shadow DOM với: input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button
 Nó có thuộc tính -webkit-appearance ta chỉnh là none chẳng hạn thì nó sẽ k hiện
@@ -44,6 +49,8 @@ Thẻ form giúp đẩy lên server có attribute action là form-handler, input
 Dùng 2 thẻ colgroup và col là để set kích thước các cột cho bảng có span là số lượng cột mà thuộc tính này nó chiếm.
 Dùng attribute cellpadding để set kc trong từng ô. Dùng style border-spacing để xác định kc các ô, chỉ có hiệu lực khi border-collapse là separate
 Chỉnh padding và margin của các ô với nhau ta k thể chỉnh của tr mà phải chỉnh của th td
+=> full control luôn. cellpadding là trong 1 cell, cellspacing là giữa các cell
+Thực tế có nhiều attribute trong html bị deprecated. VD align của table, ta nên tránh dùng nó
 
 -> HTML entity
 &nbsp;
@@ -53,7 +60,7 @@ aria-label là trình đọc cho ng khuyết tật, họ sẽ k đọc chữ mà
 Nếu 1 thẻ mà chỉ có icon thì nên dùng. Với các thẻ đã specific mọi thứ text thì trình đọc sẽ đọc nó rõ ràng mà k càn dùng thuộc tính này. Phần text của nó là phần mà trình đọc sẽ đọc
 
 -> Các thẻ lạ
-dl dt dd
+Có 3 kiểu list: ul li, ol li, dl dt dd
 Dùng thẻ ol li hiện các kiểu list theo số or la mã mà k cần dùng JS để convert
 Có nhiều thẻ hiển thị các loại text khác nhau: abbr bdo del ins pre sub sup big small...
 Thẻ fieldset lồng 1 thẻ legend và nhiều thẻ div khác bên trong 
@@ -1044,6 +1051,8 @@ Dùng kiểu display: table;
 Dùng grid master: https://css-tricks.com/snippets/css/complete-guide-grid/?fbclid=IwAR0hXkP7RHqFTVbuRnF-Vau0VqkVig1dQn6gpfa80ig3bMo7mPzW0m6DdpM
 Biết vẽ thẻ SVG: chịu chết
 CSS: học về SCSS và SASS -> từ đó tạo ứng dụng darkmode dễ hơn bằng hàm css tạo từ scss: https://medium.com/m/global-identity?redirectUrl=https%3A%2F%2Fbetterprogramming.pub%2Fa-complete-guide-to-implementing-dark-mode-in-react-47af893b22eb%3Ffbclid%3DIwAR1TilnVLD1Ei3SPGq42tOcffeLrrXCf9TGKIOxMKUfqc9TVDNLJNOw1Ipk
+
+-> Có những phần code yêu cầu buộc phải dùng scss, VD css style cho 300 phần tử, ta k thể code bằng css thuần
 
 ####
 # Basic HTML
