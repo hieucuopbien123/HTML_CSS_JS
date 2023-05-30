@@ -629,6 +629,8 @@ Có thể dùng fontSize là 0 -> fontSize unset hoặc scaleY(0) -> scaleY(1) =
 Khi click nút thì phải có 1 bức màn overlay 100vh 100vw được làm tối bằng background đen với opacity. 1 cái drawer đè lên bức màn đó.
 Animation thì tạo cái drawer như bth nhưng transform translateX(-100%), khi click thì translateX(0%) kèm transition là ok.
 
+-> Tìm animation đủ loại => search #topcsseffects trong youtube kênh hơn 1000 video chỉ giới thiệu css animation
+
 
 
 # Hack CSS:

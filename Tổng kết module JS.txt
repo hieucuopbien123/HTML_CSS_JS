@@ -189,9 +189,9 @@ map có thêm keys()
 Các kiểu iterator được ta đều có thể quy về kiểu mảng or object. VD map ta có thể coi như 1 mảng mà mỗi phần tử là 1 mảng 2 phần tử, nên ta dùng map hay fiter cho nó ok hết
 
 -> Vòng for of chỉ dùng với các biến iterable. Vd nó k dùng được TT với biến object vì object không iterable, phải dùng hàm Object.entries, yield function là iterable nên có thể duyệt được
--> Vòng for in dùng được với biến và mảng bình thường, 1 số kiểu IterableIterator như entries, values lại k dùng được
-Khi nói duyệt object thuần, ta duyệt các key
--> forEach chỉ dùng cho mảng
+-> Vòng for in dùng được với biến và mảng bình thường, 1 số kiểu IterableIterator như entries, values của Map hay Set lại k dùng được => tức hơi ngược với for...of
+Khi nói duyệt object thuần, ta duyệt các key or cả cặp key-val của object đều được
+-> forEach chỉ dùng cho mảng vì nó thuộc Array.prototype luôn
 
 -> Các hàm thao tác duyệt mảng có sẵn: some, every, filter, map, sort, reverse, reduce, copyWithin, flat
 --> Hàm map mặc định tạo ra 1 mảng mới và k thay đổi trên mảng cũ nên phải gán bằng. 
@@ -444,10 +444,14 @@ VD: localStorage là lưu vào bằng JSON.stringify và lấy ra với JSON.par
 
 
 # AJAX
-Asynchronous Javascript And XML là phương thức để trao đổi với máy chủ và cập nhập 1 hay nhiều phần của trang web. Tức nó chỉ các phương thức mà ta dùng ở phía front end để gọi đến server và load dữ liệu vào 1 phần của trang web. Các hàm như v gọi là AJAX mà thôi. Nó gắn liền với xử lý bất đồng bộ trong JS chỉ hướng sự kiện khi thao tác và bất đồng bộ trong query tới server
+Asynchronous Javascript And XML là phương thức để trao đổi với máy chủ và cập nhập 1 hay nhiều phần của trang web, nó k request html, css, js như ngày xưa nữa mà chỉ request data (nền tảng của web2.0). Tức nó chỉ các phương thức mà ta dùng ở phía front end để gọi đến server và load dữ liệu vào 1 phần của trang web. Các hàm như v gọi là AJAX mà thôi. Nó gắn liền với xử lý bất đồng bộ trong JS chỉ hướng sự kiện khi thao tác và bất đồng bộ trong query tới server
 VD: trong jquery có hàm load để load 1 file html vào 1 thẻ nào đó tức update 1 phần thì nó là 1 hàm của AJAX; Các method get, post của jquery hay các hàm fetch hay dùng XmlHttpRequest đều là đang thao tác với AJAX 
 
 Bất đồng bộ tức là vẫn hoạt động các chức năng khác đến khi tải xong thì hiện lên luôn mà kp tải trang or loading đơ các chức năng khác ấy.
+
+Ngày xưa AJAX dùng window.XmlHttpRequest Object(XHR) để gọi request và trả về response dạng XML biểu diễn DOM element or HTML dạng string
+Cũ hơn nữa, người ta còn dùng window.ActiveXObject trước phiên bản IE11. ActiveX được phát triển bởi Microsoft để tạo các thành phần tái sử dụng trên web. 
+Hầu hết các website bh toàn ajax, hiếm có cái nào request page html. AJAX trong các trình duyệt hiện đại dùng HTML5 + modern js, fetch api thì có hàm fetch sẵn của webapi or axios, code AJAX kiểu cũ có thể k hoạt động.
 
 
 
@@ -506,6 +510,15 @@ Với sự phong phú về syntax, nó chơi cả kiểu: ("b" + "a" + + "a" + "
 -> Tất cả các trình duyệt hiện đại đều hỗ trợ javascript và ta có quyền tắt bật nó tùy ý. Tắt javascript thì chỉ còn html/css nên các tính năng âm thanh, quảng cáo,.. trong trang web sẽ bị vô hiệu hóa, từ đó vô hiệu hóa quảng cáo dẫn tới link có mã độc hay cản trở trang web lấy thông tin của người dùng. Tuy nhiên các lỗ hổng của javascript thường đc vá rất nhanh nên bị người ngoài tấn công qua javascript ít khi xảy ra. Để tắt javascript trong Microsoft Edge: 3 chấm-> setting->site permission->javascript-> ấn tắt
 Javascript frontend k có tính năng đọc ghi file tự động(vì bảo mật) và xử lý đa luông.
 Khi đó, thẻ <noscript> </noscript> là thẻ sẽ hiển thị khi trình duyệt tắt javascript or k hỗ trợ 
+
+-> Polyfill là một đoạn mã (thường là JavaScript trên Web) được sử dụng để cung cấp chức năng hiện đại trên các trình duyệt cũ hơn vốn không hỗ trợ nó
+VD: dùng IE8 sẽ k có hàm Array.prototype.includes => ta phải tự viết polyfill riêng để thực hiện chức năng đó. VD:
+if (!Array.prototype.includes) {
+  Array.prototype.includes = function includes(searchElement) {
+    return this.indexOf(searchElement) !== -1
+  }
+}
+Tương tự các hàm như Object.assign cũng nên check như v nếu ứng dụng yêu cầu tương thích nhiều trình duyệt rồi dùng như bth. Trên mạng đôi khi có thu viện polyfill để tải về dùng sẵn or nhờ chat GPT viết hộ
 
 -> Tổng kết JS các thứ thường dùng nhất: file tổng kết
 Thao tác với số, string

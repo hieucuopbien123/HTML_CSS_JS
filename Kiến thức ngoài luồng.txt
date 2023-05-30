@@ -48,6 +48,7 @@ CommonJS là 1 module cung thêm 1 vài cú pháp như hàm require. Tránh nh�
 
 JS là 1 ngôn ngữ lập trình hướng đối tượng vì nó đáp ứng tất cả tính chất của lập trình hướng đối tượng, dù tính chặt chẽ cú pháp của nó khá kém. Thực tế JS kp là class-based object-oriented language như Java, C++, C$,.. Class-based OOP chỉ là 1 nhánh của OOP language. OOP language bao gồm cả prototype-based(object-based) language như JS, Self,.. vì JS vẫn có class.
 
+
 -> .json là file JavaScript Object Notation là file ban đầu dùng phục vụ các ứng dụng viết bằng javascript(file .js) nhưng do tính ứng dụng cao nên ngày càng dùng cho nhiều ngôn ngữ khác. Thao tác với cặp key value. Ta dùng nó cho việc setup các thứ, lưu thông tin ứng dụng,..
 
 
