@@ -500,6 +500,10 @@ Mọi lúc dùng let thì hầu hết đều có cách thay thế bằng const. 
 
 
 
+# Sự phát triển của JS
+
+
+
 # Other
 -> Trong js có nhiều kiểu quái đản, ta có thể gõ trực tiếp vào browser kiểm chứng:
 {} + [] và [] + {} cho kết quả khác nhau
@@ -527,6 +531,25 @@ Thao tác với mảng, object, hàm, copy địa chỉ hay giá trị
 Dùng logic lấy đk if else
 
 Ngoài ra còn thường dùng xử lý bất đồng bộ, thao tác với date, export import, dùng local storage, xử lý event
+
+-> JScript 
+Là Microsoft version of JS, dùng trong web. JScript được sử dụng chủ yếu trên nền tảng Windows và được tích hợp trong các ứng dụng như Internet Explorer và Windows Script Host.
+
+Code script k truy cập được client's hard drive vì lý do bảo mật
+
+VB Script là interpreted script lang của microsoft là 1 phần của Visual Basic programming language
+
+-> CDATA xuất hiện trong XML và HTMl để tránh lỗi parse error
+VD thay vì code JS trong html bth, ta thêm:
+ <body>
+    <script type="text/javascript">
+      // <![CDATA[
+      var myString = "<p>This is a string containing <em>HTML</em> tags.</p>";
+      console.log(myString);
+      // ]]>
+    </script>
+  </body>
+=> Tag CDATA(Character data) để tránh bị lỗi khi nội dung bên trong chứa ký tự đặc biệt. TH đơn giản k có nhưng myString chứa nhiều ký tự complex của html sẽ gây lỗi và CDATA đảm bảo phần code đó luôn được interpret đúng ở dạng literal
 
 ####
 # Basic

@@ -349,6 +349,8 @@ https://dev.to/j471n/i-made-all-countries-flags-using-html-css-4cnc?fbclid=IwAR2
 
 -> Có sẵn: các hiệu ứng cơ bản cho text, input, loading bằng html css thuần => https://cssfx.netlify.app/
 
+-> Background sao bay => ref tới "Solidity / Solidity Other / Web3ReduxFull"
+
 
 
 # Dùng font
@@ -501,7 +503,7 @@ Dùng :: hay : đều ok or dùng : vì 1 số trình duyệt k hỗ trợ ::
 Dùng & để chơi kiểu selector viết lồng nhau
 
 -> Phân biệt: 
-:is(<>) thì cho độ ưu tiên cao nhất là 100 còn :where(<>) với cú pháp giống hệt cho độ ưu tiên thấp nhất là 0 như dùng cho css reset, còn :is thg dùng cho css reset
+:is(<>) thì cho độ ưu tiên cao nhất là 100 còn :where(<>) với cú pháp giống hệt cho độ ưu tiên thấp nhất là 0 như dùng cho css reset. Cú pháp :is và :where y hệt nhau
 
 
 
@@ -645,6 +647,7 @@ height: -moz-fit-content;
 nhưng đa phần nếu browser hỗ trợ thuộc tính thì cũng sẽ hỗ trợ đủ giá trị nên éo bh thấy ai dùng
 
 
+
 # Xử lý image
 -> CSS3 hỗ trợ nhiều tính năng xử lý background-image
 Nếu ta muốn có 2 background nằm đè nhau thì phải dùng 2 thẻ html nhưng css3 hỗ trợ luôn multiple background.
@@ -731,6 +734,9 @@ Thư viện khác: react-progressive-graceful-image => rất phù hợp dùng đ
 
 --> Browser -> tab network -> No throttling -> chọn slow 3G thì tốc độ load sẽ chậm hơn sẽ xem được trải nghiệm khi mạng lag, disble cache để xem được chuẩn
 Chỉ số Cumulative Layout Shift (CLS): là chỉ số đo khi các thành phần trong web được load async với tốc độ khác nhau khi vào thì bố cục sẽ bị dịch chuyển nhiều hay ít. Bố cục càng tĩnh thì trải nghiệm càng mượt, nếu không thì nên có thêm animation cho nó cho chuẩn
+
+-> Xử lý vị trí backgroundImage
+Tạo background cho button, số hay ảnh lớn đủ kiểu
 
 
 

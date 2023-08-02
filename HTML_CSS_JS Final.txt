@@ -195,11 +195,63 @@ https://www.w3schools.com/cssref/css_fonts_fallbacks.php
 Có những màu đẹp có sẵn được support ở mọi browser nên dùng: https://www.w3schools.com/cssref/css_colors.php
 
 
+
 -> Custom cursor
+
 
 
 -> JS: Kế thừa class qua prototype
 
 
 
+-> Dùng OAuth2 login gg và dùng Gmail API:
+Để chạy apache server, khởi động nó bằng command or dùng XAMPP
+Nó sẽ tự động serve thư mục trong htdocs. VD Ta để 1 folder là 20194761 thì truy cập được index.html tự động với http://localhost/20194761
+
+Bth ta chỉ làm app gửi mail từ developer thì ta phải tạo app được sự đồng ý của developer. Còn client đăng nhập google và gửi bằng mail của họ (như gmail) thì phải có sự đồng ý của họ. Phải dùng Gmail API của gg và bản production phải mất phí nếu k sẽ luôn báo warning.
+
+Doc URL setup production: https://developers.google.com/gmail/api/auth/scopes
+Doc viết api: https://developers.google.com/gmail/api/reference/rest/v1/users.messages/get
+
+Setup: 
+- Vào https://console.cloud.google.com/
+- Tạo 1 project mới nếu chưa có
+- Search Gmail API và Enable nó. Thực tế có nhiều loại API và ở đây ta đang chỉ dùng dịch vụ Gmail.
+- Setup từng bước
+Phần url phải ủy quyền: localhost:5000 chẳng hạn nếu cho phép app chạy ở local như v
+
+Phần scope là các mức độ mà ta muốn app truy cập. VD chọn https://mail.google.com/ sẽ có full access như gửi mail nhưng k có nghĩa là có mọi thứ. VD muốn xem các email gửi thì phải thêm scope https://www.googleapis.com/auth/gmail.readonly
+Có 3 loại scope:
+Recommended là scope cơ bản nhất bất cứ ai cũng ok
+Sensitive và Restricted là 2 scope truy cập data quan trọng cần sự đồng ý của người dùng. Và developer cũng phải cho app đi qua Google Verification Process mới dùng được 2 loại scope này. Google Verification Process phải trả phí hàng tháng và phải quay video cam kết sẽ dùng thông tin nhạy cảm của user để làm gì.
+
+=> Ở bản test sẽ luôn báo warning là app k an toàn. Ở bản production, nếu ta chọn scope và trong app ta dùng các scope đó thì sẽ k báo warning nhưng nó yêu cầu trả qua verification process phải đóng phí, khi đó ta sẽ có 1 ứng dụng hoàn chỉnh. Nếu ta k chọn scope mà cứ dùng scope đó trong app sẽ báo warning
+
+App chạy được trong 2 môi trường là testing và production:
+- Trong môi trường test, chỉ những test users ta chọn là truy cập được restricted scope.
+- Còn môi trường production thì ai cũng truy cập được vào restricted scope. 
+=> Đổi môi trường trong OAuth consent screen
+=> Cái OAuth2 sau khi set mà đổi url thì éo hoạt động đâu. Tức url truy cập phải xác định từ trước. Ta phải tạo hẳn credential mới or app mới để dùng 1 url khác
+
+***Trong browser, đôi khi object nó vẫn hiện là [Object object]. Lúc đó ta buộc phải JSON.stringify(object); để nó hiện ra string r beautify json format mới xem được
+
+Trong window dùng btoa từ string sang base64, atob từ base64 sang string. Nhưng đôi khi atob nó báo lỗi k decode được, h chưa fix được nên ta cho nếu bị lỗi thì bỏ qua
+Các ký tự ngoài bảng ASCII k thể dùng btoa encode trực tiếp, phải dùng đủ là:
+window.btoa(encodeURIComponent(message)).replace(/\+/g, '-').replace(/\//g, '_')
+=> encodeURIComponent giúp dùng tiếng việt nhưng gây ra lỗi khác nên bỏ qua k dùng
+
+
+
+-> Youtube API:
+Tạo ứng dụng nhúng video youtube dạng mp3. 
+
+Có thể nhúng 1 video youtube bất kỳ vào web dạng video nhét vào src được nhưng để thao tác chi tiết với data thì phải dùng YoutubeAPI. Chỉ cần đăng ký project trong google cloud platform và enable youtube api và tạo 1 api key mới là được, k cần config gì thêm.
+
+Có thể làm đủ kiểu, phát nhạc, tua bài tiếp theo, tìm kiếm bài hát, lấy thumbnail
+
+-> Dùng SweetAlert: thư viện giúp hiển thị dialog confirm tốt nhất hiện tại
+
+
+
+-> Use contenteditable: giúp edit text trực tiếp mà k cần có tag input, nhưng khá xấu
 
