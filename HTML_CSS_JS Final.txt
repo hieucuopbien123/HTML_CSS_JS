@@ -255,3 +255,75 @@ Có thể làm đủ kiểu, phát nhạc, tua bài tiếp theo, tìm kiếm bà
 
 -> Use contenteditable: giúp edit text trực tiếp mà k cần có tag input, nhưng khá xấu
 
+
+
+-> Dùng onerror xử lý ảnh
+Ta có thể xử lý ảnh lỗi với background-image nhưng cái cục lỗi mặc định vẫn hiện ra trông rất xấu.
+
+onerror của thẻ image giúp xử lý ảnh khi lỗi:
+<img src="invalid_link" onerror="this.onerror=null;this.src='https://placeimg.com/200/300/animals';" >
+Việc dùng this.onerror=null sẽ chống lỗi infinity loop. Lỗi này xảy ra ở 1 số trình duyệt khi chính ảnh để ta fix lại bị lỗi xong lại chạy onerror xong lại lỗi và cứ vô tận như v.
+Trong React hay Next cũng có thể dùng onError như bth.
+
+Nếu sợ lỗi infinite loop, thì có thể set 1 bức ảnh local đảm bảo luôn tồn tại là được. 
+
+
+
+-> Tạo stack card khi scroll
+Cơ chế là cho position sticky với padding top để các thẻ k bị scroll đi mất mà luôn đính ở 1 chỗ như v
+
+Đây chỉ là css cơ bản, nếu muốn animation phức tạp hơn, có thể dùng JS: https://css-tricks.com/books/greatest-css-tricks/scroll-animation/
+
+Để mở browser nhanh ngay trong VSC: CTRL + SHIFT + P -> Chọn Simple Browser: Show
+
+
+
+-> constructor -> componentDidMount -> componentDidUpdate -> componentWillUnmount
+Trong class component có thể dùng state variable hay props bth. Muốn dùng biến const khác thì khai báo trực tiếp trong hàm render được
+
+
+
+-> Tính năng mới => web càng ngày càng giống app hơn
+import json trong file js type module trực tiếp được
+
+color-mix giúp mix 2 màu trong không gian màu nào
+Các thuộc tính cos, sin, tan cũng có sẵn là hàm css rồi
+initial-letter nằm trong selector ::first-letter giúp tạo chữ đầu tiên to đùng như đầu bài báo article
+Thuọc tính inert của button làm mất tính năng focus
+
+TransformStream là tính năng giúp pipe đầu ra của api thứ nhất làm đầu vào api thứ 2 luôn => ít dùng
+Làm như v giúp tiết kiệm băng thông vì kp tải toàn bộ dữ liệu từ API 1 về mói gửi lên api thứ 2 mà truyền liên tục theo từng phần nhỏ luôn
+
+--> ***Container query
+Media query style theo kích thước màn hình. Container query giúp chỉnh kích thước thẻ con theo kích thước của thẻ container cha giúp code responsive ez hơn
+=> Trong tailwind cũng hỗ trợ container query inline luôn
+
+Vd: ảnh và text bình thường trong container ta xếp ngang, nhưng màn hình nhỏ ta lại xếp dọc cho đẹp. Nhưng đôi khi màn hình nhỏ dần mà kích thước container lại tăng 
+VD 1 cái sidebar bị ẩn đi khi màn hình to ra. Khi đó ta phải căn khi nào nó ẩn đi rồi viết thêm 1 @media nữa cho thẻ rất mệt. Ta chỉ cần bao nó bằng 1 container và set flex-direction theo container đó là được
+
+--> ***Font size tự động đổi theo kích thước màn hình:
+min và max trong css giúp lấy min và max của giá trị gì, khi kết hợp với kích thước relative sẽ rất mạnh
+Màn hình luôn được chia thành 100 đơn vị vw và vh. VD màn hình là 1460px thì 1vw sẽ tương ứng với 14.6px
+clamp(a, b, c); là hàm của css giúp lấy 1 giá trị trong khoảng a và c. Nó ss lấy min(b,c) là x rồi lấy max(a, x) trả ra kết quả. 
+
+VD ta muốn màn hình dưới 700px có font-size là 16px, sau đó tăng dần tuyến tính lên 1px mỗi 100px tăng lên cho đến max là 22px => font-size: clamp(16px, 1vw + 9px, 22px);
+Khi 700px, nó sẽ là clamp(16px, 16px, 22px) thì lấy 16px. Font size tuyến tính tăng lên 13px thì clamp(16px, 22px, 22px) thì lấy 22px
+Vd muốn màn hình tăng đến đúng 1500px thì fontsize mới là 22px ta chỉ cần giải phương trình là được
+
+Or dùng generator: https://clamp.font-size.app
+
+--> Các đơn vị mới dùng riêng cho mobile như lvh, dvh, svh, svw 
+Nó có lợi ở chỗ giúp design webpage trong trường hợp có tính toolbar của browser trên điện thoại mở hay không
+
+***popovertarget và popover giúp 1 thẻ hiện khi click và ẩn khi click ra ngoài, éo cần js phức tạp nữa
+css nesting đã có thể viết css như sass
+color font
+Các thuộc tính có thể dùng trực tiếp như rotate, translate, scale mà k cần dùng kèm transform
+Selector mới là: focus-visible giúp bắt TH button bị click hay chọn bởi tab key
+
+animation-timeline giúp control thuộc tính animation phụ thuộc vào hành động của user hoàn toàn bằng css. VD chỉ khi scroll thì animation mới chạy 
+
+--> View transition API giúp chuyển trạng thái mượt mà kể cả người dùng ấn lùi lại. Mượt như app bth luôn
+Full tut kèm code full: https://developer.chrome.com/docs/web-platform/view-transitions/
+
+

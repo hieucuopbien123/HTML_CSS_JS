@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="final2.css">
   <title>Document</title>
+  <script src="./final2.js" type="module"></script>
 </head>
 <body>
   <!-- Dùng dialog tag -->
@@ -124,5 +125,120 @@
     console.log(testPerson.age + " -- " + testPerson.name);
   </script>
 
+  <!-- # Tính năng mới -->
+  <button popovertarget="mypopover">Toggle the popover</button>
+  <div id="mypopover" popover>Popover content</div>
+
+  <!-- Container query -->
+  <div class="wrapper">
+    <div class="sidebar"></div>
+    <div class="main">
+      <div class="card">
+        <div class="card-image">
+          <img
+            src="https://picsum.photos/id/237/200/300"
+            alt=""
+          />
+        </div>
+        <div class="card-content">
+          <p class="card-city">New York</p>
+          <h3 class="card-title">
+            New York City’s air pollution among the world’s worst as Canada wildfire smoke shrouds Northeast
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    .main {
+      container-name: card;
+      container-type: inline-size;
+    }
+    @container card (max-width: 500px) {
+      .card {
+        flex-direction: column;
+      }
+    }
+    .card-title {
+      font-size: clamp(1rem, 0.625rem + 0.8571vw, 1.375rem);
+      font-weight: bold;
+      background-color: color-mix(in srgb, red 100%, blue 50%)
+    }
+  </style>
+
+  <div class="test_css_nesting">
+    <div class="changecolor">Hello 5</div>
+  </div>
+  <style>
+    .test_css_nesting div {
+      font-size: 50px;
+    }
+    .test_css_nesting {
+      .changecolor {
+        color: red;
+      }
+    }
+  </style>
+
+  <div class="testtransform">Testdfasdf</div>
+  <style>
+    .testtransform {
+      rotate: 45deg;
+    }
+    .testtransform::first-letter{
+      initial-letter: 3;
+    }
+  </style>
+
+  <button class="btn">Test thôi</button>
+  <style>
+    /* Focus bằng phím tab */
+    .btn:focus-visible {
+      background-color: red;
+    }
+    /* Mouse click */
+    .btn:focus:not(:focus-visible) {
+      background-color: green;
+    }
+  </style>
+
+  <button inert>Don't touch me</button>
+
+  <!-- Animation timeline -->
+  <div id="container">
+    <div id="square"></div>
+    <div id="stretcher"></div>
+  </div>
+  <style>
+    #container {
+      height: 300px;
+      overflow-y: scroll;
+      scroll-timeline-name: --squareTimeline; /* scroll-timeline-name giúp animate theo scroll của thẻ này */
+      position: relative;
+    }
+    #square {
+      background-color: deeppink;
+      width: 100px;
+      height: 100px;
+      margin-top: 100px;
+      animation-name: rotateAnimation;
+      animation-duration: 1ms; /* Firefox requires this to apply the animation */
+      animation-direction: alternate;
+      animation-timeline: --squareTimeline;
+      position: absolute;
+      bottom: 0;
+    }
+    @keyframes rotateAnimation {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    #stretcher {
+      height: 600px;
+    }
+  </style>
 </body>
 </html>
