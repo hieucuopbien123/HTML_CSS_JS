@@ -317,13 +317,60 @@ Nó có lợi ở chỗ giúp design webpage trong trường hợp có tính too
 
 ***popovertarget và popover giúp 1 thẻ hiện khi click và ẩn khi click ra ngoài, éo cần js phức tạp nữa
 css nesting đã có thể viết css như sass
-color font
 Các thuộc tính có thể dùng trực tiếp như rotate, translate, scale mà k cần dùng kèm transform
 Selector mới là: focus-visible giúp bắt TH button bị click hay chọn bởi tab key
 
 animation-timeline giúp control thuộc tính animation phụ thuộc vào hành động của user hoàn toàn bằng css. VD chỉ khi scroll thì animation mới chạy 
 
+--> color font: Font được style sẵn
+
 --> View transition API giúp chuyển trạng thái mượt mà kể cả người dùng ấn lùi lại. Mượt như app bth luôn
 Full tut kèm code full: https://developer.chrome.com/docs/web-platform/view-transitions/
 
+-> Color rule:
+Phối màu neutral 60% quyết định theme chính của ứng dụng. Màu này được sử dụng cho nền ngoài cùng. Thường là đen or trắng
+Màu primary 30% được dùng cho các panel hay background của dialog, thẻ thường. Màu này có thể gần giống màu neutral để tạo ứng dụng 1 theme monochrome
+Màu secondary 10% chỉ dùng cho các phần tử quan trọng để người dùng focus vào mà bấm như button, vị trí mà người dùng có thể tương tác, highlight. Màu này nên nổi bật lên trên 2 màu kia
+
+Các màu chọn có thể là gradient hay thêm các màu lạ khác vào (1%) nhưng phải tuân theo quy tắc 3 màu chủ đạo. Sắp xếp các màu hợp lý, tránh các màu quá tương phản mà liên tục show ở 1 vị trí 
+Chỉ nên có 2 màu xuất hiện nhiều là neutral và primary. Chỉ cần chọn ra 3 màu và dùng trong trang với tỉ lệ như v là web nhìn hiện đại. 
+Các bức ảnh có thể mang bất kỳ màu gì k ảnh hưởng, nhưng nếu nhiều ảnh cùng 1 màu nền thì rất có thể màu nên kia thành màu primary.
+Còn phụ thuộc vào font chữ, animation, bo góc.
+
+-> Tính năng khác của browser:
+--> Nhận biết tình trạng kết nối mạng
+--> Nhận biết người dùng bật devtool
+--> Che giấu source code frontend
+Đang ở trang webA, khi load ta cho history.pushState sang đường dẫn khác (cùng host) thì khi mở view page source sẽ ra html của đường dẫn đó. Để đánh lừa thì ta nên cho 2 đường dẫn na ná nhau với chữ i viết hoa giống chữ l viết thường
+Khi vào devtool ta cũng bắt được bằng JS và cho ẩn phần code JS đi là được. 
+Dev khác vào web sẽ thấy source code là của web kia và k có code js nào cả
+--> Nhận biết chuyển tab 
+
+-> WebComponent
+URL code sample: https://www.freecodecamp.org/news/write-components-that-work-in-any-framework/?fbclid=IwAR0gO-7vQPOp9p1HT02U5OisRF7g3PIth-TR-ofn5TXDWcIG9jnToXP_mRo
+
+Ta có thể tạo ra các tag html thuần để dùng được ở mọi framework. VD menu select trong HTML thuần rất khó custom triangle thì có thể tự tạo. Ta có thể tự tạo r import vào dùng
+1 tag html thuần cấu thành từ 3 phần tử:
+Shadow DOM là phần css k bị ảnh hưởng khi người dùng global style các thẻ. Dev dùng k thể custom shadow DOM
+HTML <template> là tag đặc biệt mà nội dung k được render trực tiếp mà phải được copy rồi mới render ra
+Google có tool Lit giúp tạo web component dễ hơn
+
+-> SVG:
+SVG là 1 ngôn ngữ dạng XML miêu tả đồ họa vector 2 chiều. Chất lượng tốt, animation, tiết kiệm dung lượng. 
+SVG bị hạn chế về màu sắc, trong các hoạt ảnh ta dùng SVG rất tốt. Dù hạn chế nhưng ta vẫn có thể vẽ SVG 1 bức ảnh đẹp như chụp, khi đó performance sẽ cực kỳ tệ.
+SVG Sprites là phương pháp gom tất cả các ảnh trang trí các thứ vào 1 file duy nhất và chỉnh vị trí cho chuẩn. Thay vì server nhận nhiều request từng tấm ảnh nhỏ thì chỉ cần 1 bức SVG là được
+
+Có nhiều tool giúp vẽ tay SVG
+URL: https://topdev.vn/blog/svg-la-gi/?utm_source=facebook&utm_medium=post&utm_campaign=topdev&utm_term=blog&utm_content=b_svg-la-gi&fbclid=IwAR1RQdHelcwqbSIN3_glK4F5khwmL-tCFkD9SgIy8LOSluCkOtDFO9id2wA
+
+--> Animate svg khi hover: các tag svg dùng đc animation css như bth, dùng cho các thẻ path hay g bên trong để animate 1 phần của icon cũng được luôn
+Khi đó ta gán id cho nó, set animation-play-state là paused mặc đinh, khi hover vào thì đổi lại thành running là ok
+
+-> Tỉ lệ chuẩn: outer radius = inner radius + distance giữa 2 border
+
+-> Cách thay đổi css của VSC:
+Tải extension Custom css and loader -> tạo file custom.css để ở 1 thư mục -> ấn vào ký hiệu setting mở settings -> mở file user settings.json bằng ký hiệu ở góc phải bên trên -> thêm code: "vscode_custom_css.imports": ["file:///C:/Users/Ryan.Nguyen/Documents/custom.css"] là đường tuyệt đối tới file css -> CTRL + SHIFT + P mở dev tool -> tìm các class và custom thoải mái -> viết code custom vào file css -> CTRL + SHIFT + P và enable custom css and js -> tải extension Fix VSC Checksum -> CTRL + SHIFT + P Fix Checksum Restor -> tiếp Fix Checksum Apply
+
+-> Lấy tình trạng pin bằng JS:
+VD khi pin yếu, có thể code trang web giảm tải dung lượng tối thiểu cho user, đặc biệt là khi họ điền biểu mẫu or giao dịch mua hàng
 
